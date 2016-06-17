@@ -15,31 +15,23 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Load 'GameScene.sks' as a GKScene. This provides gameplay related content
-        // including entities and graphs.
-        if let scene = GKScene(fileNamed: "GameScene") {
-            
-            // Get the SKScene from the loaded GKScene
-            if let sceneNode = scene.rootNode as! GameScene? {
-                
-                // Copy gameplay related content over to the scene
-                sceneNode.entities = scene.entities
-                sceneNode.graphs = scene.graphs
-                
-                // Set the scale mode to scale to fit the window
-                sceneNode.scaleMode = .aspectFill
-                
-                // Present the scene
-                if let view = self.view as! SKView? {
-                    view.presentScene(sceneNode)
-                    
-                    view.ignoresSiblingOrder = true
-                    
-                    view.showsFPS = true
-                    view.showsNodeCount = true
-                }
-            }
-        }
+        // シーンの作成
+        let scene = GameScene()
+        
+        // View ControllerのViewをSKView型として取り出す
+        let view = self.view as! SKView
+        
+        // FPSの表示
+        view.showsFPS = true
+        
+        // ノード数の表示
+        view.showsNodeCount = true
+        
+        // シーンのサイズをビューに合わせる
+        scene.size = view.frame.size
+        
+        // ビュー上にシーンを表示
+        view.presentScene(scene)
     }
 
     override func shouldAutorotate() -> Bool {
