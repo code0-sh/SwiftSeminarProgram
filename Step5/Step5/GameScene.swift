@@ -21,12 +21,6 @@ class GameScene: SKScene {
         // 必要な画像枚数を算出
         let needHeightNumber = ceil( 2.0 + (self.frame.size.height / texture.size().height) )
         let needWidthNumber = ceil( 2.0 + self.frame.size.width / texture.size().width )
-
-        print("frame height:\(self.frame.size.height)")
-        print("texture height:\(texture.size().height)")
-        
-        print("frame width:\(self.frame.size.width)")
-        print("texture width:\(texture.size().width)")
         
         // アニメーションを作成
         let moveAnim = SKAction.moveBy(x: 0.0, y: -texture.size().height, duration: TimeInterval(texture.size().height / 10.0))
