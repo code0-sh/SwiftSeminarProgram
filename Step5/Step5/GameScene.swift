@@ -19,17 +19,23 @@ class GameScene: SKScene {
         texture.filteringMode = .nearest
         
         // 必要な画像枚数を算出
-        let needNumber = ceil( 2.0 + (self.frame.size.width / texture.size().width) )
-        let needHeightNumber = ceil(self.frame.size.height / texture.size().height)
+        let needHeightNumber = ceil( 2.0 + (self.frame.size.height / texture.size().height) )
+        let needWidthNumber = ceil( 2.0 + self.frame.size.width / texture.size().width )
+
+        print("frame height:\(self.frame.size.height)")
+        print("texture height:\(texture.size().height)")
+        
+        print("frame width:\(self.frame.size.width)")
+        print("texture width:\(texture.size().width)")
         
         // アニメーションを作成
-        let moveAnim = SKAction.moveBy(x: -texture.size().width, y: 0.0, duration: TimeInterval(texture.size().width / 10.0))
-        let resetAnim = SKAction.moveBy(x: texture.size().width, y: 0.0, duration: 0.0)
+        let moveAnim = SKAction.moveBy(x: 0.0, y: -texture.size().height, duration: TimeInterval(texture.size().height / 10.0))
+        let resetAnim = SKAction.moveBy(x: 0.0, y: texture.size().height, duration: 0.0)
         let repeatForeverAnim = SKAction.repeatForever(SKAction.sequence([moveAnim, resetAnim]))
         
         // 画像の配置とアニメーションを設定
-        for j in 0 ..< Int(needHeightNumber) {
-            for i in 0 ..< Int(needNumber) {
+        for i in 0 ..< Int(needWidthNumber) {
+            for j in 0 ..< Int(needHeightNumber) {
                 let sprite = SKSpriteNode(texture: texture)
                 sprite.zPosition = -100.0
                 sprite.position = CGPoint(x: CGFloat(i)*sprite.size.width, y: CGFloat(j)*sprite.size.height)
