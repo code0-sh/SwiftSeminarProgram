@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		136155BF1D177876003C4003 /* person.png in Resources */ = {isa = PBXBuildFile; fileRef = 136155BE1D177876003C4003 /* person.png */; };
 		13A9AD661D13D6CD007807D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A9AD651D13D6CD007807D6 /* AppDelegate.swift */; };
 		13A9AD6C1D13D6CD007807D6 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A9AD6B1D13D6CD007807D6 /* GameScene.swift */; };
 		13A9AD6E1D13D6CD007807D6 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A9AD6D1D13D6CD007807D6 /* GameViewController.swift */; };
@@ -36,7 +35,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		136155BE1D177876003C4003 /* person.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = person.png; path = ../../../person.png; sourceTree = "<group>"; };
 		13A9AD621D13D6CD007807D6 /* Step4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Step4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13A9AD651D13D6CD007807D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		13A9AD6B1D13D6CD007807D6 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -78,14 +76,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		136155BD1D17785E003C4003 /* images */ = {
-			isa = PBXGroup;
-			children = (
-				136155BE1D177876003C4003 /* person.png */,
-			);
-			name = images;
-			sourceTree = "<group>";
-		};
 		13A9AD591D13D6CD007807D6 = {
 			isa = PBXGroup;
 			children = (
@@ -109,7 +99,6 @@
 		13A9AD641D13D6CD007807D6 /* Step4 */ = {
 			isa = PBXGroup;
 			children = (
-				136155BD1D17785E003C4003 /* images */,
 				13A9AD651D13D6CD007807D6 /* AppDelegate.swift */,
 				13A9AD6B1D13D6CD007807D6 /* GameScene.swift */,
 				13A9AD6D1D13D6CD007807D6 /* GameViewController.swift */,
@@ -248,7 +237,6 @@
 			files = (
 				13A9AD711D13D6CD007807D6 /* Main.storyboard in Resources */,
 				13A9AD731D13D6CD007807D6 /* Assets.xcassets in Resources */,
-				136155BF1D177876003C4003 /* person.png in Resources */,
 				13A9AD761D13D6CD007807D6 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
