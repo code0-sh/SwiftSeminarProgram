@@ -10,13 +10,13 @@ import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene {
-    
+    /// 背景画像を設定する
     func setupBackground(baseNode: SKNode) {
         // 背景画像からテクスチャを作成
         let texture = SKTexture(imageNamed: "background")
         // フィルタリングモード（テクスチャの本来のサイズ以外で描画される場合に使用される）
-        // .Linear クォリティーの高い描画ができるけど遅い
-        // .Nearest 粗いけど速い
+        // .Linear クォリティー高い
+        // .Nearest クォリティー低い
         texture.filteringMode = .nearest
         
         // 必要な画像枚数を算出
@@ -46,7 +46,7 @@ class GameScene: SKScene {
             baseNode.addChild(sprite)
         }
     }
-    
+    /// Sceneが表示された際に実行される
     override func didMove(to view: SKView) {
         let baseNode = SKNode()
         baseNode.speed = 1.0

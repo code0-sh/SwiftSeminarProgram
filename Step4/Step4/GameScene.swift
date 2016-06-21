@@ -10,6 +10,7 @@ import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene {
+    /// Sceneが表示された際に実行される
     override func didMove(to view: SKView) {
         // スプライトを作成
         let sprite = SKSpriteNode(imageNamed: "person.png")
