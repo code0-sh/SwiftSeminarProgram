@@ -12,14 +12,22 @@ import GameplayKit
 class GameScene: SKScene {
     override func didMove(to view: SKView) {
         // スプライトを作成
-        let person = SKSpriteNode(imageNamed: "person.png")
+        let sprite = SKSpriteNode(imageNamed: "person.png")
         // スプライトのサイズ
-        person.size = CGSize(width: 100, height: 100)
+        sprite.size = CGSize(width: 50, height: 50)
         // スプライトの位置
-        person.position = CGPoint(x:self.frame.midX, y:self.frame.midY)
+        sprite.position = CGPoint(x:self.frame.midX, y:self.frame.midY)
         // スプライトを配置する
-        self.addChild(person)
+        self.addChild(sprite)
         // 画面の背景色
         self.backgroundColor = UIColor.lightGray()
+        
+        // 画像の差し替え
+        let texture = SKTexture(imageNamed: "airplane.png")
+        sprite.texture = texture
+        
+        // 色をブレンドする
+        sprite.color = #colorLiteral(red: 0.1991284192, green: 0.6028449535, blue: 0.9592232704, alpha: 1)
+        sprite.colorBlendFactor = 1
     }
 }
