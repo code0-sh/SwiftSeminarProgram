@@ -11,6 +11,11 @@ import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
+    struct ColliderType {
+        static let Enemy: UInt32 = (1 << 0)
+        static let World: UInt32 = (1 << 1)
+    }
+    
     func setupEnemy(baseNode: SKNode) {
         // エネミー画像からテクスチャを作成
         let texture = SKTexture(imageNamed: "enemy")
@@ -35,10 +40,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             sprite.physicsBody?.linearDamping = 0.0 // 空気抵抗
             sprite.physicsBody?.mass = 1.0 // 質量
             sprite.physicsBody?.friction = 0.0 // 摩擦
-            sprite.physicsBody?.contactTestBitMask = 1
+            
+            // 物体種別
+            sprite.physicsBody?.categoryBitMask = ColliderType.Enemy
+            // どの物体と接触した場合に衝突させるか
+            sprite.physicsBody?.collisionBitMask = ColliderType.Enemy | ColliderType.World
+            // どの物体と接触した場合にイベントを発生させるか
+            sprite.physicsBody?.contactTestBitMask = ColliderType.Enemy
             
             baseNode.addChild(sprite)
         }
+    }
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        contact.bodyA.node?.removeFromParent()
     }
 
     /// Sceneが表示された際に実行される
@@ -54,6 +69,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsBody?.linearDamping = 0.0 // 空気抵抗
         self.physicsBody?.friction = 0.0 // 摩擦
         self.name = "frame"
+        
+        // 物体種別
+        self.physicsBody?.categoryBitMask = ColliderType.World
+        // どの物体と接触した場合に衝突させるか
+        self.physicsBody?.collisionBitMask = ColliderType.Enemy
         
         self.addChild(baseNode)
     }
