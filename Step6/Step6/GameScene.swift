@@ -10,7 +10,7 @@ import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
-    
+    // 衝突判定用のビット値
     struct ColliderType {
         static let Enemy: UInt32 = (1 << 0)
         static let World: UInt32 = (1 << 1)
@@ -51,7 +51,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             baseNode.addChild(sprite)
         }
     }
-    
+    // 接触した時のイベント
     func didBegin(_ contact: SKPhysicsContact) {
         contact.bodyA.node?.removeFromParent()
     }
