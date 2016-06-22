@@ -36,8 +36,12 @@ class GameScene: SKScene {
         let shell = SKShapeNode(circleOfRadius: Shell.radius)
         shell.position = CGPoint(x: location.x, y: Shell.positionY)
         shell.fillColor = UIColor.red()
-        let action = SKAction.move(to: CGPoint(x: location.x, y: self.frame.size.height), duration: 5)
-        shell.run(action)
+        // 弾丸の移動
+        let moveAction = SKAction.move(to: CGPoint(x: location.x, y: self.frame.size.height), duration: 5)
+        // 弾丸の削除
+        let removeAction = SKAction.removeFromParent()
+        let sequenceAction = SKAction.sequence([moveAction, removeAction])
+        shell.run(sequenceAction)
         self.addChild(shell)
     }
     /// Sceneが表示された際に実行される
