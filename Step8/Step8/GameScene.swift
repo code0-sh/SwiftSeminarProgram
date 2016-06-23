@@ -11,7 +11,7 @@ import GameplayKit
 
 class GameScene: SKScene {
     // 効果音
-    let sound = SKAction.playSoundFileNamed("sound", waitForCompletion: false)
+    let sound = SKAction.playSoundFileNamed("sound_explosion.mp3", waitForCompletion: false)
     
     func setupParticle(location: CGPoint) {
         let particle = SKEmitterNode(fileNamed: "ConflictParticle.sks")
@@ -21,7 +21,7 @@ class GameScene: SKScene {
         // タップするたびにパーティクルが増えて処理が重くなるため
         // パーティクルを表示してから1秒後に削除する
         let removeAction = SKAction.removeFromParent()
-        let durationAction = SKAction.wait(forDuration: 1)
+        let durationAction = SKAction.wait(forDuration: 10)
         let sequenceAction = SKAction.sequence([sound, durationAction, removeAction])
         particle?.run(sequenceAction)
     }
