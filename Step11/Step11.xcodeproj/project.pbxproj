@@ -15,6 +15,8 @@
 		132603E11D1D08C200E6E755 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 132603DF1D1D08C200E6E755 /* LaunchScreen.storyboard */; };
 		132603EC1D1D08C200E6E755 /* Step11Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132603EB1D1D08C200E6E755 /* Step11Tests.swift */; };
 		132603F71D1D08C200E6E755 /* Step11UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132603F61D1D08C200E6E755 /* Step11UITests.swift */; };
+		138963351D20E2850020408E /* ConflictParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 138963331D20E2850020408E /* ConflictParticle.sks */; };
+		138963361D20E2850020408E /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 138963341D20E2850020408E /* spark.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		132603F21D1D08C200E6E755 /* Step11UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Step11UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		132603F61D1D08C200E6E755 /* Step11UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step11UITests.swift; sourceTree = "<group>"; };
 		132603F81D1D08C200E6E755 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		138963331D20E2850020408E /* ConflictParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ConflictParticle.sks; sourceTree = "<group>"; };
+		138963341D20E2850020408E /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,8 @@
 				132603DD1D1D08C200E6E755 /* Assets.xcassets */,
 				132603DF1D1D08C200E6E755 /* LaunchScreen.storyboard */,
 				132603E21D1D08C200E6E755 /* Info.plist */,
+				138963331D20E2850020408E /* ConflictParticle.sks */,
+				138963341D20E2850020408E /* spark.png */,
 			);
 			path = Step11;
 			sourceTree = "<group>";
@@ -241,7 +247,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				138963361D20E2850020408E /* spark.png in Resources */,
 				132603DC1D1D08C200E6E755 /* Main.storyboard in Resources */,
+				138963351D20E2850020408E /* ConflictParticle.sks in Resources */,
 				132603DE1D1D08C200E6E755 /* Assets.xcassets in Resources */,
 				132603E11D1D08C200E6E755 /* LaunchScreen.storyboard in Resources */,
 			);
@@ -363,7 +371,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -405,7 +413,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -419,7 +427,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Step11/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sample.Step11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -432,7 +440,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Step11/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sample.Step11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -511,6 +519,7 @@
 				132603FD1D1D08C200E6E755 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		132603FE1D1D08C200E6E755 /* Build configuration list for PBXNativeTarget "Step11Tests" */ = {
 			isa = XCConfigurationList;
@@ -519,6 +528,7 @@
 				132604001D1D08C200E6E755 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		132604011D1D08C200E6E755 /* Build configuration list for PBXNativeTarget "Step11UITests" */ = {
 			isa = XCConfigurationList;
@@ -527,6 +537,7 @@
 				132604031D1D08C200E6E755 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
