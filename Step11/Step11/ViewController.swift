@@ -8,15 +8,14 @@
 
 import UIKit
 import SpriteKit
-import GameplayKit
 
-class GameViewController: UIViewController {
+class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // シーンの作成
-        let scene = GameScene()
+        let scene = HomeScene()
         
         // View ControllerのViewをSKView型として取り出す
         let view = self.view as! SKView
