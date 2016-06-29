@@ -26,6 +26,10 @@ struct Ship {
     static let width: CGFloat = 100
     static let height: CGFloat = 100
     static let positionY: CGFloat = 100
+    var moveX: CGFloat
+    init() {
+        self.moveX = 0
+    }
 }
 /// 弾丸情報
 struct Shell {
@@ -43,8 +47,8 @@ struct Enemy {
 struct Particle {
     static let fileName: String = "ConflictParticle.sks"
 }
-/// ステータス情報
-struct Status {
+/// 飛行機のステータス情報
+struct ShipStatus {
     static let width: CGFloat = 100
     static let height: CGFloat = 30
     static let color: SKColor = SKColor.blue()
@@ -53,6 +57,18 @@ struct Status {
     init() {
         self.point = 10
         self.scaleX = 10
+    }
+}
+/// 弾丸のステータス情報
+struct ShellStatus {
+    static let width: CGFloat = 100
+    static let height: CGFloat = 30
+    static let color: SKColor = SKColor.yellow()
+    var point: Int
+    var scaleX: Int
+    init() {
+        self.point = 100
+        self.scaleX = 100
     }
 }
 /// スコア情報
