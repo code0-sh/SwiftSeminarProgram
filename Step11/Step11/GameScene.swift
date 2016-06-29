@@ -11,10 +11,10 @@ import SpriteKit
 class GameScene: SKScene, SKPhysicsContactDelegate {
     var shipNode: SKSpriteNode! = nil
     var statusNode: SKSpriteNode! = nil
-    var timer = Timer();
     var scoreNode: SKLabelNode! = nil
-    var status: Status? = nil
-    var score: Score? = nil
+    var timer = Timer();
+    var status: Status! = nil
+    var score: Score! = nil
 
     /// 背景画像の設定
     func setupBackground(baseNode: SKNode) {
@@ -170,7 +170,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // ラベルのフォントを指定しインスタンスを生成する
         scoreNode = SKLabelNode(fontNamed: Score.fontName)
         // ラベルに表示する文字列
-        scoreNode.text = "スコア:\(score?.point)ポイント"
+        scoreNode.text = "スコア:\(score.point)ポイント"
         // ラベルの文字サイズ
         scoreNode.fontSize = Score.fontSize
         // ラベルの文字色
@@ -183,12 +183,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     /// スコア更新
     func updateScorePoint() {
         score?.point += 1
-        scoreNode.text = "スコア:\(score?.point)ポイント"
+        scoreNode.text = "スコア:\(score.point)ポイント"
     }
     /// 遷移先のSceneのUserDataにスコアを保存
     func setUserData(scene: SKScene) {
         scene.userData = NSMutableDictionary()
-        scene.userData?.setObject((score?.point)!, forKey: "score")
+        scene.userData?.setObject(score.point, forKey: "score")
     }
     /// 接触時のイベント
     func didBegin(_ contact: SKPhysicsContact) {
