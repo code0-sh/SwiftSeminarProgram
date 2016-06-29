@@ -13,7 +13,7 @@ class HomeScene: SKScene {
     /// Sceneが表示された際に実行される
     override func didMove(to view: SKView) {
         let baseNode = SKNode()
-        startLabel = Button.setup(location: CGPoint(x: self.frame.midX, y: self.frame.midY), text: "Start")
+        startLabel = Label.setup(location: CGPoint(x: self.frame.midX, y: self.frame.midY), text: "Start")
         baseNode.addChild(startLabel)
         self.addChild(baseNode)
     }
@@ -23,7 +23,7 @@ class HomeScene: SKScene {
             let location = touche.location(in: self)
             // Startラベルタッチ
             if startLabel.contains(location) {
-                let transition = SKTransition.doorway(withDuration: 1)
+                let transition = SKTransition.doorway(withDuration: 1.0)
                 let newScene = GameScene()
                 newScene.size = self.frame.size
                 view?.presentScene(newScene, transition: transition)

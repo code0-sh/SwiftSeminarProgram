@@ -14,15 +14,15 @@ class ResultScene: SKScene {
     override func didMove(to view: SKView) {
         let baseNode = SKNode()
         // ゲームオーバーラベル
-        let resultLabel = Button.setup(location: CGPoint(x: self.frame.midX, y: self.frame.midY), text: "Game Over")
+        let resultLabel = Label.setup(location: CGPoint(x: self.frame.midX, y: self.frame.midY), text: "Game Over")
         baseNode.addChild(resultLabel)
         // スコアラベル
         if let num = self.scene?.userData?["score"] {
-            let score = Button.setup(location: CGPoint(x: self.frame.midX, y: self.frame.midY - 50), text: "得点：\(num)")
-            baseNode.addChild(score)
+            let scoreLabel = Label.setup(location: CGPoint(x: self.frame.midX, y: self.frame.midY - 50), text: "得点：\(num)")
+            baseNode.addChild(scoreLabel)
         }
         // 再スタートラベル
-        restartLabel = Button.setup(location: CGPoint(x: self.frame.midX, y: self.frame.midY - 100), text: "Restart")
+        restartLabel = Label.setup(location: CGPoint(x: self.frame.midX, y: self.frame.midY - 100), text: "Restart")
         baseNode.addChild(restartLabel)
         
         self.addChild(baseNode)
@@ -33,7 +33,7 @@ class ResultScene: SKScene {
             let location = touche.location(in: self)
             // 再スタートラベルタッチ
             if restartLabel.contains(location) {
-                let transition = SKTransition.doorway(withDuration: 1)
+                let transition = SKTransition.doorway(withDuration: 1.0)
                 let newScene = GameScene()
                 newScene.size = self.frame.size
                 view?.presentScene(newScene, transition: transition)

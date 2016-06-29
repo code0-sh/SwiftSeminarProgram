@@ -31,19 +31,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         texture.filteringMode = .nearest
         
         // 必要な画像枚数を算出
-        let needHeightNumber = ceil(2.0 + (self.frame.size.height / texture.size().height))
+        let needHeightNumber = ceil(2 + (self.frame.size.height / texture.size().height))
         let needWidthNumber = ceil(self.frame.size.width / texture.size().width)
 
         // アニメーションを作成
-        let moveAnim = SKAction.moveBy(x: 0.0, y: -texture.size().height, duration: TimeInterval(texture.size().height / 10.0))
-        let resetAnim = SKAction.moveBy(x: 0.0, y: texture.size().height, duration: 0.0)
+        let moveAnim = SKAction.moveBy(x: 0, y: -texture.size().height, duration: TimeInterval(texture.size().height / 10.0))
+        let resetAnim = SKAction.moveBy(x: 0, y: texture.size().height, duration: 0.0)
         let repeatForeverAnim = SKAction.repeatForever(SKAction.sequence([moveAnim, resetAnim]))
         
         // 画像の配置とアニメーションを設定
         for i in 0 ..< Int(needWidthNumber) + 1 {
             for j in 0 ..< Int(needHeightNumber) {
                 let sprite = SKSpriteNode(texture: texture)
-                sprite.zPosition = -100.0
+                sprite.zPosition = -100
                 sprite.position = CGPoint(x: CGFloat(i) * sprite.size.width, y: CGFloat(j) * sprite.size.height)
                 // アニメーションスピード
                 sprite.speed = Background.sppedAnim
@@ -117,7 +117,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         shell.fillColor = UIColor.red()
         shell.name = "shell"
         // 弾丸の移動
-        let moveAction = SKAction.move(to: CGPoint(x: location.x, y: self.frame.size.height), duration: 5)
+        let moveAction = SKAction.move(to: CGPoint(x: location.x, y: self.frame.size.height), duration: 5.0)
         // 弾丸の削除
         let removeAction = SKAction.removeFromParent()
         let sequenceAction = SKAction.sequence([moveAction, removeAction])
@@ -142,7 +142,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // タップするたびにパーティクルが増えて処理が重くなるため
         // パーティクルを表示してから1秒後に削除する
         let removeAction = SKAction.removeFromParent()
-        let durationAction = SKAction.wait(forDuration: 1)
+        let durationAction = SKAction.wait(forDuration: 1.0)
         let sequenceAction = SKAction.sequence([durationAction, removeAction])
         particle?.run(sequenceAction)
     }
@@ -164,7 +164,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func updateShipStatus() {
         if shipStatus?.scaleX > 0 {
             shipStatus?.scaleX -= 1
-            let scaleAction = SKAction.scaleX(to: CGFloat(shipStatus.scaleX)/10.0, duration: 1)
+            let scaleAction = SKAction.scaleX(to: CGFloat(shipStatus.scaleX)/10.0, duration: 1.0)
             scaleAction.timingMode = .easeIn
             shipStatusNode.run(scaleAction)
         }
@@ -182,7 +182,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func updateShellStatus() {
         if shellStatus?.scaleX > 0 {
             shellStatus?.scaleX -= 1
-            let scaleAction = SKAction.scaleX(to: CGFloat(shellStatus.scaleX)/100.0, duration: 1)
+            let scaleAction = SKAction.scaleX(to: CGFloat(shellStatus.scaleX)/100.0, duration: 1.0)
             scaleAction.timingMode = .easeIn
             shellStatusNode.run(scaleAction)
         }
