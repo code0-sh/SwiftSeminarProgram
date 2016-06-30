@@ -12,9 +12,15 @@ import GameplayKit
 class GameScene: SKScene {
     var score: Int = 0
     var scoreLabelNode: SKLabelNode! = nil
-    var endLabelNode: SKLabelNode! = nil
+    var endNode: SKSpriteNode! = nil
+    var saveNode: SKSpriteNode! = nil
     var buttonUpNode: SKSpriteNode! = nil
+    var clearNode: SKSpriteNode! = nil
     func setup(baseNode: SKNode) {
+        // スコアをUserDefaultsから読み取って設定
+        let defaults: UserDefaults = UserDefaults.standard()
+        score = defaults.integer(forKey: "Score")
+        
         // ラベルのフォントを指定しインスタンスを生成する
         scoreLabelNode = SKLabelNode(fontNamed:"Chalkduster")
         // ラベルに表示する文字列
@@ -28,28 +34,41 @@ class GameScene: SKScene {
         // ラベルを配置する
         self.addChild(scoreLabelNode)
 
-        // ラベルのフォントを指定しインスタンスを生成する
-        endLabelNode = SKLabelNode(fontNamed:"Chalkduster")
-        // ラベルに表示する文字列
-        endLabelNode.text = String("End")
-        // ラベルの文字サイズ
-        endLabelNode.fontSize = 30
-        // ラベルの文字色
-        endLabelNode.fontColor = SKColor.brown()
-        // ラベルの位置
-        endLabelNode.position = CGPoint(x:self.frame.midX, y:self.frame.midY - 150);
-        // ラベルを配置する
-        self.addChild(endLabelNode)
-        
-        // スプライトを作成
+        // Upボタンを作成
         buttonUpNode = SKSpriteNode(imageNamed: "buttonUp")
-        // スプライトのサイズ
+        // Upボタンのサイズ
         buttonUpNode.size = CGSize(width: 50, height: 50)
-        // スプライトの位置
+        // Upボタンの位置
         buttonUpNode.position = CGPoint(x:self.frame.midX, y:self.frame.midY - 50)
-        // スプライトを配置する
+        // Upボタンを配置する
         baseNode.addChild(buttonUpNode)
         
+        // Endボタンを作成
+        endNode = SKSpriteNode(imageNamed:"end")
+        // Endボタンのサイズ
+        endNode.size = CGSize(width: 50, height: 25)
+        // Endボタンの位置
+        endNode.position = CGPoint(x:self.frame.midX, y:self.frame.midY - 150);
+        // Endボタンを配置する
+        self.addChild(endNode)
+        
+        // Saveボタンを作成
+        saveNode = SKSpriteNode(imageNamed:"save")
+        // Saveボタンのサイズ
+        saveNode.size = CGSize(width: 50, height: 25)
+        // Saveボタンの位置
+        saveNode.position = CGPoint(x:self.frame.midX, y:self.frame.midY - 200);
+        // Saveボタンを配置する
+        self.addChild(saveNode)
+        
+        // Clearボタンを作成
+        clearNode = SKSpriteNode(imageNamed:"clear")
+        // Clearボタンのサイズ
+        clearNode.size = CGSize(width: 50, height: 25)
+        // Clearボタンの位置
+        clearNode.position = CGPoint(x:self.frame.midX, y:self.frame.midY - 250);
+        // Clearボタンを配置する
+        self.addChild(clearNode)
     }
     /// Sceneが表示された際に実行される
     override func didMove(to view: SKView) {
@@ -64,13 +83,22 @@ class GameScene: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touche in touches {
             let location = touche.location(in: self)
-            if endLabelNode.contains(location) {
+            let defaults: UserDefaults = UserDefaults.standard()
+            if buttonUpNode.contains(location) {
+                score += 1
+                scoreLabelNode.text = String(score)
+            }
+            if endNode.contains(location) {
                 let gameScene = GameScene(size: self.size)
                 self.view!.presentScene(gameScene)
             }
-            if buttonUpNode.contains(location) {
-                self.score += 1
-                scoreLabelNode.text = String(score)
+            if saveNode.contains(location) {
+                // スコアをUserDefaultsに保存
+                defaults.set(self.score, forKey: "Score")
+            }
+            if clearNode.contains(location) {
+                // スコアをUserDefaultsから削除
+                defaults.removeObject(forKey: "Score")
             }
         }
     }
