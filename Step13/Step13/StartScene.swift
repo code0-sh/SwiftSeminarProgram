@@ -36,11 +36,12 @@ class StartScene: SKScene {
             // Startラベルタッチ
             if label.contains(location) {
                 // EndSceneを表示
-                print(self.view)
-                let transition = SKTransition.doorway(withDuration: 1)
-                let newScene = EndScene()
-                newScene.size = self.frame.size
-                view?.presentScene(newScene, transition: transition)
+                let newScene = EndScene(size: self.frame.size)
+                newScene.scaleMode = SKSceneScaleMode.aspectFill
+                view?.presentScene(newScene)
+                // Bug?
+                //let transition = SKTransition.moveIn(with: .right, duration: 1)
+                //view?.presentScene(newScene, transition: transition)
             }
         }
     }
