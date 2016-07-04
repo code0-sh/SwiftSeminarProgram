@@ -9,14 +9,17 @@
 /* Begin PBXBuildFile section */
 		0E9177EBF8F04974C604EE82 /* Pods_Step14UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF74DD2490945C3037CD025 /* Pods_Step14UITests.framework */; };
 		13160B651D26430E00AAC622 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13160B641D26430E00AAC622 /* AppDelegate.swift */; };
-		13160B671D26430E00AAC622 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13160B661D26430E00AAC622 /* ViewController.swift */; };
+		13160B671D26430E00AAC622 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13160B661D26430E00AAC622 /* FirstViewController.swift */; };
 		13160B6A1D26430E00AAC622 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13160B681D26430E00AAC622 /* Main.storyboard */; };
 		13160B6C1D26430E00AAC622 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13160B6B1D26430E00AAC622 /* Assets.xcassets */; };
 		13160B6F1D26430E00AAC622 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13160B6D1D26430E00AAC622 /* LaunchScreen.storyboard */; };
 		13160B7A1D26430E00AAC622 /* Step14Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13160B791D26430E00AAC622 /* Step14Tests.swift */; };
 		13160B851D26430E00AAC622 /* Step14UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13160B841D26430E00AAC622 /* Step14UITests.swift */; };
 		13160B931D264B7200AAC622 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13160B921D264B7200AAC622 /* GoogleService-Info.plist */; };
+		1375E1701D29F2D50052C497 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1375E16F1D29F2D50052C497 /* SecondViewController.swift */; };
+		1375E1721D29FD8E0052C497 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1375E1711D29FD8E0052C497 /* ThirdViewController.swift */; };
 		13DEAD791D265E27009E5ECD /* Pods_Step14.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13DEAD781D265E27009E5ECD /* Pods_Step14.framework */; };
+		20889ABAD8010D12E95FD7D9 /* Pods_Step14.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB84CE8EF788B7115D3598B /* Pods_Step14.framework */; };
 		E580092CA85B7D2D88D19C16 /* Pods_Step14Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73AC8571D5844D7C94065D75 /* Pods_Step14Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,7 +43,7 @@
 /* Begin PBXFileReference section */
 		13160B611D26430E00AAC622 /* Step14.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Step14.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13160B641D26430E00AAC622 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		13160B661D26430E00AAC622 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		13160B661D26430E00AAC622 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		13160B691D26430E00AAC622 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		13160B6B1D26430E00AAC622 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		13160B6E1D26430E00AAC622 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -52,6 +55,8 @@
 		13160B841D26430E00AAC622 /* Step14UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step14UITests.swift; sourceTree = "<group>"; };
 		13160B861D26430E00AAC622 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		13160B921D264B7200AAC622 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1375E16F1D29F2D50052C497 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		1375E1711D29FD8E0052C497 /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 		13DEAD781D265E27009E5ECD /* Pods_Step14.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Step14.framework; path = "Pods/../build/Debug-iphoneos/Pods_Step14.framework"; sourceTree = "<group>"; };
 		1F875FE219D9B3B3545FFDBD /* Pods-Step14UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Step14UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Step14UITests/Pods-Step14UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		2030466A2BE17E1B629D2A69 /* Pods-Step14Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Step14Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Step14Tests/Pods-Step14Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -70,6 +75,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13DEAD791D265E27009E5ECD /* Pods_Step14.framework in Frameworks */,
+				20889ABAD8010D12E95FD7D9 /* Pods_Step14.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,8 +125,10 @@
 			children = (
 				13160B921D264B7200AAC622 /* GoogleService-Info.plist */,
 				13160B641D26430E00AAC622 /* AppDelegate.swift */,
-				13160B661D26430E00AAC622 /* ViewController.swift */,
+				1375E16F1D29F2D50052C497 /* SecondViewController.swift */,
+				13160B661D26430E00AAC622 /* FirstViewController.swift */,
 				13160B681D26430E00AAC622 /* Main.storyboard */,
+				1375E1711D29FD8E0052C497 /* ThirdViewController.swift */,
 				13160B6B1D26430E00AAC622 /* Assets.xcassets */,
 				13160B6D1D26430E00AAC622 /* LaunchScreen.storyboard */,
 				13160B701D26430E00AAC622 /* Info.plist */,
@@ -442,7 +450,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13160B671D26430E00AAC622 /* ViewController.swift in Sources */,
+				1375E1701D29F2D50052C497 /* SecondViewController.swift in Sources */,
+				13160B671D26430E00AAC622 /* FirstViewController.swift in Sources */,
+				1375E1721D29FD8E0052C497 /* ThirdViewController.swift in Sources */,
 				13160B651D26430E00AAC622 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

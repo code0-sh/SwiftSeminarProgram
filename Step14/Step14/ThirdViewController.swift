@@ -1,0 +1,104 @@
+//
+//  ThirdViewController.swift
+//  Step14
+//
+//  Created by omura.522 on 2016/07/04.
+//  Copyright © 2016年 omura.522. All rights reserved.
+//
+
+import UIKit
+import Firebase
+
+class ThirdViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var table: UITableView!
+    @IBOutlet weak var notification: UILabel!
+    let rootRef = FIRDatabase.database().reference() //Firebaseのルートを宣言しておく
+    var contentArray: [FIRDataSnapshot] = [] //Fetchしたデータを入れておく配列、この配列をTableViewで表示
+    var snap: FIRDataSnapshot!
+    
+    /// ログアウト
+    @IBAction func logout(_ sender: UIButton) {
+        do {
+            try FIRAuth.auth()?.signOut()
+            let storyboard: UIStoryboard = self.storyboard!
+            let firstViewController = storyboard.instantiateViewController(withIdentifier: "first") as! FirstViewController
+            self.present(firstViewController, animated: true, completion: nil)
+        } catch let error as NSError {
+            self.notification.text = "Logout failed! \n \(error.userInfo["NSLocalizedDescription"]!)"
+        }
+    }
+    
+    func read()  {
+        //FIRDataEventTypeを.Valueにすることにより、なにかしらの変化があった時に、実行
+        //今回は、childでユーザーIDを指定することで、ユーザーが投稿したデータの一つ上のchildまで指定することになる
+        self.rootRef.child("users").observe(.value, with: {(snapShots) in
+            if snapShots.children.allObjects is [FIRDataSnapshot] {
+                print("snapShots.children...\(snapShots.childrenCount)") //いくつのデータがあるかプリント
+                
+                print("snapShot...\(snapShots)")//読み込んだデータをプリント
+                
+                self.snap = snapShots
+            }
+            self.reload(snap: self.snap)
+        })
+    }
+    //読み込んだデータは最初すべてのデータが一つにまとまっているので、それらを分割して、配列に入れる
+    func reload(snap: FIRDataSnapshot) {
+        //FIRDataSnapshotが存在するか確認
+        if snap.exists() {
+            contentArray.removeAll()
+            //1つになっているFIRDataSnapshotを分割し、配列に入れる
+            for item in snap.children {
+                contentArray.append(item as! FIRDataSnapshot)
+            }
+            //テーブルビューをリロード
+            table.reloadData()
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        notification.text = ""
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //データを読み込むためのメソッド、後ほど記載
+        self.read()
+    }
+    
+    /// セルの個数を指定するデリゲートメソッド（必須）
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return contentArray.count
+    }
+    
+    /// セルに値を設定するデータソースメソッド（必須）
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        // セルを取得する
+        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath as IndexPath)
+        
+        // セルに表示する値を設定する
+        // cell.textLabel!.text = fruits[indexPath.row]
+        
+        let item = contentArray[indexPath.row]
+        let content = item.value as! Dictionary<String, String>
+        cell.textLabel!.text = "name: \(content["name"]!) point: \(content["point"]!)"
+        
+        return cell
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        //画面が消えたときに、Firebaseのデータ読み取りのObserverを削除しておく
+        rootRef.removeAllObservers()
+    }
+}
+
+

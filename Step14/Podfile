@@ -8,6 +8,7 @@ target 'Step14' do
   # Pods for Step14
   pod 'Firebase'
   pod 'Firebase/Auth'
+  pod 'Firebase/Database'
 
   target 'Step14Tests' do
     inherit! :search_paths
