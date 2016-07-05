@@ -33,11 +33,12 @@ class ThirdViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func read()  {
         //FIRDataEventTypeを.Valueにすることにより、なにかしらの変化があった時に、実行
         //今回は、childでusersを指定することで、ユーザーが登録したデータの一つ上のchildまで指定することになる
-        self.rootRef.child("users").observe(.value, with: {(snapShots) in
+        self.rootRef.child("users").queryOrdered(byChild: "point").observe(.value, with: {(snapShots) in
             if snapShots.children.allObjects is [FIRDataSnapshot] {
-                print("snapShots.children...\(snapShots.childrenCount)") //いくつのデータがあるかプリント
-                
-                print("snapShot...\(snapShots)")//読み込んだデータをプリント
+                //データ数
+                print("snapShots.children...\(snapShots.childrenCount)")
+                //読み込んだデータ
+                print("snapShot...\(snapShots)")
                 
                 self.snap = snapShots
             }
@@ -51,7 +52,8 @@ class ThirdViewController: UIViewController, UITableViewDelegate, UITableViewDat
             contentArray.removeAll()
             //1つになっているFIRDataSnapshotを分割し、配列に入れる
             for item in snap.children {
-                contentArray.append(item as! FIRDataSnapshot)
+                // pointが多いもの順になるように追加する
+                contentArray.insert(item as! FIRDataSnapshot, at: 0)
             }
             //テーブルビューをリロード
             table.reloadData()
@@ -81,8 +83,10 @@ class ThirdViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         // セルに表示する値を設定する
         let item = contentArray[indexPath.row]
-        let content = item.value as! Dictionary<String, String>
-        cell.textLabel!.text = "name: \(content["name"]!) point: \(content["point"]!)"
+        let content = item.value
+        if let name = content?["name"], point = content?["point"] {
+            cell.textLabel!.text = "name: \(name!) point: \(point!)"
+        }
         
         return cell
     }
