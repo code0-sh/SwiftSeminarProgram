@@ -236,7 +236,7 @@
                                         <frame key="frameInset" minY="28" width="748" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UzA-Rn-oFA" id="DWQ-bc-5S9">
-                                            <frame key="frameInset" width="748" height="43"/>
+                                            <frame key="frameInset" width="748" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
