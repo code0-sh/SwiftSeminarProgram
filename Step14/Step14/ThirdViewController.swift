@@ -84,8 +84,8 @@ class ThirdViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // セルに表示する値を設定する
         let item = contentArray[indexPath.row]
         let content = item.value
-        if let name = content?["name"], point = content?["point"] {
-            cell.textLabel!.text = "name: \(name!) point: \(point!)"
+        if let name = content?["name"]!, point = content?["point"]! {
+            cell.textLabel!.text = "name: \(name) point: \(point)"
         }
         
         return cell
