@@ -13,7 +13,7 @@ class ThirdViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var notification: UILabel!
-    let rootRef = FIRDatabase.database().reference() //Firebaseのルートを宣言しておく
+    let rootRef = FIRDatabase.database().reference()
     var contentArray: [FIRDataSnapshot] = [] //Fetchしたデータを入れておく配列、この配列をTableViewで表示
     var snap: FIRDataSnapshot!
     
@@ -25,13 +25,14 @@ class ThirdViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let firstViewController = storyboard.instantiateViewController(withIdentifier: "first") as! FirstViewController
             self.present(firstViewController, animated: true, completion: nil)
         } catch let error as NSError {
+            self.notification.numberOfLines = 2
             self.notification.text = "Logout failed! \n \(error.userInfo["NSLocalizedDescription"]!)"
         }
     }
     
     func read()  {
         //FIRDataEventTypeを.Valueにすることにより、なにかしらの変化があった時に、実行
-        //今回は、childでユーザーIDを指定することで、ユーザーが投稿したデータの一つ上のchildまで指定することになる
+        //今回は、childでusersを指定することで、ユーザーが登録したデータの一つ上のchildまで指定することになる
         self.rootRef.child("users").observe(.value, with: {(snapShots) in
             if snapShots.children.allObjects is [FIRDataSnapshot] {
                 print("snapShots.children...\(snapShots.childrenCount)") //いくつのデータがあるかプリント
@@ -64,7 +65,6 @@ class ThirdViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //データを読み込むためのメソッド、後ほど記載
         self.read()
     }
     
@@ -80,8 +80,6 @@ class ThirdViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath as IndexPath)
         
         // セルに表示する値を設定する
-        // cell.textLabel!.text = fruits[indexPath.row]
-        
         let item = contentArray[indexPath.row]
         let content = item.value as! Dictionary<String, String>
         cell.textLabel!.text = "name: \(content["name"]!) point: \(content["point"]!)"
