@@ -20,8 +20,8 @@ class GameScene: SKScene {
         texture.filteringMode = .nearest
         
         // 必要な画像枚数を算出
-        let needHeightNumber = ceil(2.0 + (self.frame.size.height / texture.size().height))
-        let needWidthNumber = ceil(self.frame.size.width / texture.size().width)
+        let needHeightNumber: CGFloat = ceil(self.frame.size.height / texture.size().height)
+        let needWidthNumber: CGFloat = ceil(self.frame.size.width / texture.size().width)
         
         print("frame height:\(self.frame.size.height)")
         print("frame width:\(self.frame.size.width)")
@@ -38,18 +38,20 @@ class GameScene: SKScene {
         let repeatForeverAnim = SKAction.repeatForever(SKAction.sequence([moveAnim, resetAnim]))
         
         // 画像の配置とアニメーションを設定
-        for j in 0 ..< Int(needHeightNumber) {
-            let sprite = SKSpriteNode(texture: texture)
-            sprite.zPosition = -100.0
-            sprite.position = CGPoint(x:self.frame.midX, y: CGFloat(j)*sprite.size.height)
-            sprite.run(repeatForeverAnim)
-            baseNode.addChild(sprite)
+        for i in 0 ... Int(needWidthNumber) {
+            for j in 0 ... Int(needHeightNumber) {
+                let sprite = SKSpriteNode(texture: texture)
+                sprite.zPosition = -100
+                sprite.position = CGPoint(x: CGFloat(i) * sprite.size.width, y: CGFloat(j) * sprite.size.height)
+                sprite.speed = 20
+                sprite.run(repeatForeverAnim)
+                baseNode.addChild(sprite)
+            }
         }
     }
     /// Sceneが表示された際に実行される
     override func didMove(to view: SKView) {
         let baseNode = SKNode()
-        baseNode.speed = 1.0
         self.setupBackground(baseNode: baseNode)
         self.addChild(baseNode)
     }
