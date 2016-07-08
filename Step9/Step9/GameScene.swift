@@ -28,26 +28,23 @@ class GameScene: SKScene {
     func setupShip(baseNode: SKNode) {
         let texture = SKTexture(imageNamed: "Spaceship")
         // フィルタリングモード（テクスチャの本来のサイズ以外で描画される場合に使用される）
-        // .Linear クォリティー高い
-        // .Nearest クォリティー低
+        // .linear クォリティー高い
+        // .nearest クォリティー低
         texture.filteringMode = .nearest
         ship = SKSpriteNode(texture: texture)
         ship.size = CGSize(width: Ship.width, height: Ship.height)
         ship.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
-        baseNode.addChild(ship)
-
         ship.physicsBody = SKPhysicsBody(rectangleOf: ship.size)
-        // 重力を効かせない
-        ship.physicsBody?.affectedByGravity = false
-        // 物体種別
-        ship.physicsBody?.categoryBitMask = ColliderType.Ship
-        // どの物体と接触した場合に衝突させるか
-        ship.physicsBody?.collisionBitMask = ColliderType.World
+        ship.physicsBody?.affectedByGravity = false // 飛行機に重力を効かせない
+        ship.physicsBody?.categoryBitMask = ColliderType.Ship // 物体種別
+        ship.physicsBody?.collisionBitMask = ColliderType.World // どの物体と接触した場合に衝突させるか
+        
+        baseNode.addChild(ship)
     }
     /// 加速度データを使用して飛行機のx方向の移動距離を算出
     func setupMotionManager() {
         motionManager = CMMotionManager()
-        motionManager.accelerometerUpdateInterval = 0.1
+        motionManager.accelerometerUpdateInterval = 0.1 // 取得間隔
         let accelerometerHandler: CMAccelerometerHandler = {
             (data: CMAccelerometerData?, error: NSError?) -> Void in
             guard let data = data else {
@@ -57,7 +54,7 @@ class GameScene: SKScene {
             
             Ship.moveX = CGFloat(data.acceleration.x) * 20
         }
-        motionManager.startAccelerometerUpdates(to: OperationQueue.current()!, withHandler: accelerometerHandler)
+        motionManager.startAccelerometerUpdates(to: OperationQueue.current()!, withHandler: accelerometerHandler) // 加速度センサーを使用開始
     }
     /// Sceneが表示された際に実行される
     override func didMove(to view: SKView) {
@@ -66,10 +63,8 @@ class GameScene: SKScene {
         setupMotionManager()
 
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height))
-        // 物体種別
-        self.physicsBody?.categoryBitMask = ColliderType.World
-        // どの物体と接触した場合に衝突させるか
-        self.physicsBody?.collisionBitMask = ColliderType.Ship
+        self.physicsBody?.categoryBitMask = ColliderType.World // 物体種別
+        self.physicsBody?.collisionBitMask = ColliderType.Ship // どの物体と接触した場合に衝突させるか
         
         self.addChild(baseNode)
     }
