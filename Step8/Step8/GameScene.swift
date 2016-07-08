@@ -14,16 +14,18 @@ class GameScene: SKScene {
     let sound = SKAction.playSoundFileNamed("sound_explosion.mp3", waitForCompletion: false)
     
     func setupParticle(location: CGPoint) {
-        let particle = SKEmitterNode(fileNamed: "ConflictParticle.sks")
-        particle?.position = CGPoint(x: location.x, y: location.y)
-        self.addChild(particle!)
+        guard let particle = SKEmitterNode(fileNamed: "ConflictParticle.sks") else {
+            return
+        }
+        particle.position = CGPoint(x: location.x, y: location.y)
+        self.addChild(particle)
         
         // タップするたびにパーティクルが増えて処理が重くなるため
-        // パーティクルを表示してから1秒後に削除する
+        // パーティクルを表示してから10秒後に削除する
         let removeAction = SKAction.removeFromParent()
         let durationAction = SKAction.wait(forDuration: 10)
         let sequenceAction = SKAction.sequence([sound, durationAction, removeAction])
-        particle?.run(sequenceAction)
+        particle.run(sequenceAction)
     }
     /// Sceneが表示された際に実行される
     override func didMove(to view: SKView) {
