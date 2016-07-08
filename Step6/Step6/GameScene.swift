@@ -28,30 +28,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let radius: CGFloat = 10
         
         for _ in 0..<10 {
-            let sprite = SKSpriteNode(texture: texture)
-            sprite.size = CGSize(width: radius*2, height: radius*2)
+            let enemy = SKSpriteNode(texture: texture)
+            enemy.size = CGSize(width: radius * 2, height: radius * 2)
             let randIntX = radius + (CGFloat)(arc4random_uniform((UInt32)(self.frame.width - radius * 2)))
             let randIntY = radius + (CGFloat)(arc4random_uniform((UInt32)(self.frame.height - radius * 2)))
-            sprite.position = CGPoint(x:randIntX, y:randIntY)
+            enemy.position = CGPoint(x:randIntX, y:randIntY)
 
-            // 重力
-            sprite.physicsBody = SKPhysicsBody(circleOfRadius: radius)
-            sprite.physicsBody?.restitution = 1.0 // 反発係数
-            sprite.physicsBody?.linearDamping = 0.0 // 空気抵抗
-            sprite.physicsBody?.mass = 1.0 // 質量
-            sprite.physicsBody?.friction = 0.0 // 摩擦
+            // 物理設定
+            enemy.physicsBody = SKPhysicsBody(circleOfRadius: radius)
+            enemy.physicsBody?.restitution = 1.0 // 反発係数
+            enemy.physicsBody?.linearDamping = 0.0 // 空気抵抗
+            enemy.physicsBody?.mass = 1.0 // 質量
+            enemy.physicsBody?.friction = 0.0 // 摩擦
+            enemy.physicsBody?.categoryBitMask = ColliderType.Enemy // 物体種別
+            enemy.physicsBody?.collisionBitMask = ColliderType.Enemy | ColliderType.World // どの物体と接触した場合に衝突させるか
+            enemy.physicsBody?.contactTestBitMask = ColliderType.Enemy // どの物体と接触した場合にイベントを発生させるか
             
-            // 物体種別
-            sprite.physicsBody?.categoryBitMask = ColliderType.Enemy
-            // どの物体と接触した場合に衝突させるか
-            sprite.physicsBody?.collisionBitMask = ColliderType.Enemy | ColliderType.World
-            // どの物体と接触した場合にイベントを発生させるか
-            sprite.physicsBody?.contactTestBitMask = ColliderType.Enemy
-            
-            baseNode.addChild(sprite)
+            baseNode.addChild(enemy)
         }
     }
-    // 接触した時のイベント
+    // 衝突時のイベント
     func didBegin(_ contact: SKPhysicsContact) {
         contact.bodyA.node?.removeFromParent()
     }
@@ -61,19 +57,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let baseNode = SKNode()
         self.setupEnemy(baseNode: baseNode)
 
-        // 重力
-        self.physicsWorld.gravity = CGVector(dx: 0.0, dy: -0.5)
-        self.physicsWorld.contactDelegate = self
+        // 物理設定
+        self.physicsWorld.gravity = CGVector(dx: 0.0, dy: -0.5) // 重力
+        self.physicsWorld.contactDelegate = self // 衝突デリゲート
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
         self.physicsBody?.restitution = 1.0 // 反発係数
         self.physicsBody?.linearDamping = 0.0 // 空気抵抗
         self.physicsBody?.friction = 0.0 // 摩擦
-        self.name = "frame"
-        
-        // 物体種別
-        self.physicsBody?.categoryBitMask = ColliderType.World
-        // どの物体と接触した場合に衝突させるか
-        self.physicsBody?.collisionBitMask = ColliderType.Enemy
+        self.physicsBody?.categoryBitMask = ColliderType.World // 物体種別
+        self.physicsBody?.collisionBitMask = ColliderType.Enemy // どの物体と接触した場合に衝突させるか
         
         self.addChild(baseNode)
     }

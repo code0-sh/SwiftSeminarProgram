@@ -10,7 +10,7 @@ import SpriteKit
 import GameplayKit
 
 struct Ship {
-    static let size: CGFloat = 30
+    static let size: CGFloat = 50
     static let positionY: CGFloat = 100
 }
 
@@ -35,7 +35,7 @@ class GameScene: SKScene {
     func createShell(location: CGPoint) {
         let shell = SKShapeNode(circleOfRadius: Shell.radius)
         shell.position = CGPoint(x: location.x, y: Shell.positionY)
-        shell.fillColor = UIColor.red()
+        shell.fillColor = SKColor.red()
         // 弾丸の移動
         let moveAction = SKAction.move(to: CGPoint(x: location.x, y: self.frame.size.height), duration: 5)
         // 弾丸の削除
@@ -65,7 +65,6 @@ class GameScene: SKScene {
             let tapCount = touch.tapCount
             if tapCount > 1 {
                 createShell(location: location)
-                return
             }
         }
     }
