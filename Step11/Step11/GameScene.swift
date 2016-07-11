@@ -216,7 +216,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         score?.point += 1
         scoreNode.text = "スコア:\(score.point)ポイント"
     }
-    /// 遷移先のSceneのUserDataにスコアを保存
+    /// 遷移先のSceneのuserDataにスコアを保存
     func setUserData(scene: SKScene) {
         scene.userData = NSMutableDictionary()
         scene.userData?.setObject(score.point, forKey: "score")

@@ -16,9 +16,10 @@ class GameScene: SKScene {
     var saveNode: SKSpriteNode! = nil
     var buttonUpNode: SKSpriteNode! = nil
     var clearNode: SKSpriteNode! = nil
+    let defaults: UserDefaults = UserDefaults.standard()
+    
     func setup(baseNode: SKNode) {
-        // スコアをUserDefaultsから読み取って設定
-        let defaults: UserDefaults = UserDefaults.standard()
+        // スコアをUserDefaultsから読み取る
         score = defaults.integer(forKey: "Score")
         
         // ラベルのフォントを指定しインスタンスを生成する
@@ -83,7 +84,6 @@ class GameScene: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touche in touches {
             let location = touche.location(in: self)
-            let defaults: UserDefaults = UserDefaults.standard()
             if buttonUpNode.contains(location) {
                 score += 1
                 scoreLabelNode.text = String(score)
