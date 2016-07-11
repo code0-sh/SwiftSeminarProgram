@@ -202,6 +202,8 @@
 				TargetAttributes = {
 					13DBF1CD1D129E7D00DDA3F3 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = BNPC67H7PT;
+						DevelopmentTeamName = "omura shuichi";
 						ProvisioningStyle = Automatic;
 					};
 					13DBF1E71D129E7F00DDA3F3 = {
@@ -513,6 +515,7 @@
 				13DBF1FE1D129E7F00DDA3F3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		13DBF1FF1D129E7F00DDA3F3 /* Build configuration list for PBXNativeTarget "Step1Tests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +524,7 @@
 				13DBF2011D129E7F00DDA3F3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		13DBF2021D129E7F00DDA3F3 /* Build configuration list for PBXNativeTarget "Step1UITests" */ = {
 			isa = XCConfigurationList;
@@ -529,6 +533,7 @@
 				13DBF2041D129E7F00DDA3F3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
