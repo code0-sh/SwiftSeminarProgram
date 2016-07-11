@@ -35,6 +35,7 @@ class EndScene: SKScene {
             let location = touche.location(in: self)
             // Endラベルタッチ
             if label.contains(location) {
+                // 通知を送る
                 // SecondViewControllerに遷移する
                 NotificationCenter.default().post(name: "MoveSecondViewController" as NSNotification.Name, object: nil)
             }

@@ -21,7 +21,11 @@ class FirstViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // NotificationCenterに登録する
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // 通知の監視
         NotificationCenter.default().addObserver(self,
                                                  selector: #selector(moveSecondViewController),
                                                  name: "MoveSecondViewController",
@@ -44,6 +48,12 @@ class FirstViewController: UIViewController {
             // ビュー上にシーンを表示
             view.presentScene(scene)
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        // 通知の監視の終了
+        NotificationCenter.default().removeObserver(self)
     }
 
     override func shouldAutorotate() -> Bool {
