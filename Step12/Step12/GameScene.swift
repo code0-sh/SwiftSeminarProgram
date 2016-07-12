@@ -78,7 +78,7 @@ class GameScene: SKScene {
         self.addChild(baseNode)
 
         // 背景色
-        self.backgroundColor = SKColor.white()
+        self.backgroundColor = SKColor.purple()
     }
     /// タップ開始イベント
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

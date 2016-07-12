@@ -18,6 +18,7 @@ class FirstViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor.lightGray()
         notification.text = ""
     }
     /// 登録処理

@@ -62,6 +62,7 @@ class ThirdViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor.lightGray()
         notification.text = ""
     }
     
