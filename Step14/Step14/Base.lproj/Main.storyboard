@@ -63,7 +63,7 @@
                                     <constraint firstAttribute="height" constant="30" id="d4V-Gy-2ME"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="ログイン"/>
+                                <state key="normal" title="サインイン"/>
                                 <connections>
                                     <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zdt-Iy-bA6"/>
                                 </connections>
@@ -177,7 +177,7 @@
                                     <constraint firstAttribute="height" constant="30" id="uyC-IX-ueJ"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="記録"/>
+                                <state key="normal" title="保存"/>
                                 <connections>
                                     <action selector="save:" destination="aTE-Vh-7lV" eventType="touchUpInside" id="5We-8N-66l"/>
                                 </connections>
@@ -253,7 +253,7 @@
                                     <constraint firstAttribute="height" constant="30" id="iRo-bn-Nnm"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="ログアウト"/>
+                                <state key="normal" title="サインアウト"/>
                                 <connections>
                                     <action selector="logout:" destination="nQ0-9B-T1c" eventType="touchUpInside" id="ZVb-3B-gS3"/>
                                 </connections>

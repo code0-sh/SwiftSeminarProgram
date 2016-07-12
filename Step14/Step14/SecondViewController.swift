@@ -14,7 +14,7 @@ class SecondViewController: UIViewController {
     @IBOutlet weak var point: UITextField!
     @IBOutlet weak var notification: UILabel!
     
-    /// 記録処理
+    /// 保存処理
     @IBAction func save(_ sender: UIButton) {
         if let user = FIRAuth.auth()?.currentUser {
             guard let point = Int(self.point.text!), uid: String = user.uid else {
