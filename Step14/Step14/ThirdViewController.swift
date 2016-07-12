@@ -17,7 +17,7 @@ class ThirdViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var contentArray: [FIRDataSnapshot] = [] //Fetchしたデータを入れておく配列、この配列をTableViewで表示
     var snap: FIRDataSnapshot!
     
-    /// ログアウト
+    /// サインアウト
     @IBAction func logout(_ sender: UIButton) {
         do {
             try FIRAuth.auth()?.signOut()

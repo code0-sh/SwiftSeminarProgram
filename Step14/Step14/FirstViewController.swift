@@ -42,7 +42,7 @@ class FirstViewController: UIViewController {
             }
         })
     }
-    /// ログイン処理
+    /// サインイン処理
     @IBAction func login(_ sender: UIButton) {
         guard let email = email.text, password = password.text else {
             return
