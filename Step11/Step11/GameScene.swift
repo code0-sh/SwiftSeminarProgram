@@ -170,6 +170,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         // Game Over
         if shipStatus?.point <= 1 {
+            timer.invalidate() // タイマー停止
             let transition = SKTransition.reveal(with: SKTransitionDirection.down, duration: 1.0)
             let newScene = ResultScene()
             newScene.size = self.frame.size
@@ -188,6 +189,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         // 弾丸切れ
         if shellStatus?.point <= 1 {
+            timer.invalidate() // タイマー停止
             let transition = SKTransition.reveal(with: SKTransitionDirection.down, duration: 1.0)
             let newScene = ResultScene()
             newScene.size = self.frame.size

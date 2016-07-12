@@ -20,7 +20,7 @@ class GameScene: SKScene {
         texture.filteringMode = .nearest
         
         // 必要な画像枚数を算出
-        let needHeightNumber: CGFloat = ceil(self.frame.size.height / texture.size().height)
+        let needHeightNumber: CGFloat = ceil(self.frame.size.height / texture.size().height) + 1
         let needWidthNumber: CGFloat = ceil(self.frame.size.width / texture.size().width)
         
         print("frame height:\(self.frame.size.height)")
