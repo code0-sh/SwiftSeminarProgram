@@ -18,23 +18,23 @@ class FirstViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.lightGray()
+        self.view.backgroundColor = UIColor.lightGray
         notification.text = ""
     }
     /// 登録処理
     @IBAction func register(_ sender: UIButton) {
-        guard let email = self.email.text, password = self.password.text else {
+        guard let email = self.email.text, let password = self.password.text else {
             return
         }
-        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user:FIRUser?, error:NSError?) in
+        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
             if let error = error {
                 self.notification.numberOfLines = 2
-                self.notification.text = "Creating the user failed! \n \(error.userInfo["NSLocalizedDescription"]!)"
+                self.notification.text = "Creating the user failed! \n \(error.localizedDescription)"
                 return
             }
             
             if let user = user {
-                guard let uid: String = user.uid, name = self.name.text, email = self.email.text else {
+                guard let uid: String = user.uid, let name = self.name.text, let email = self.email.text else {
                     return
                 }
                 let rootRef = FIRDatabase.database().reference()
@@ -45,13 +45,13 @@ class FirstViewController: UIViewController {
     }
     /// サインイン処理
     @IBAction func login(_ sender: UIButton) {
-        guard let email = email.text, password = password.text else {
+        guard let email = email.text, let password = password.text else {
             return
         }
         FIRAuth.auth()?.signIn(withEmail: email, password: password) { (user, error) in
             if let error = error {
                 self.notification.numberOfLines = 2
-                self.notification.text = "Login failed! \n \(error.userInfo["NSLocalizedDescription"]!)"
+                self.notification.text = "Login failed! \n \(error.localizedDescription)"
                 return
             }
             // Game画面に遷移する

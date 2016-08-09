@@ -35,7 +35,7 @@ class GameScene: SKScene {
     func createShell(location: CGPoint) {
         let shell = SKShapeNode(circleOfRadius: Shell.radius)
         shell.position = CGPoint(x: location.x, y: Shell.positionY)
-        shell.fillColor = SKColor.red()
+        shell.fillColor = SKColor.red
         // 弾丸の移動
         let moveAction = SKAction.move(to: CGPoint(x: location.x, y: self.frame.size.height), duration: 5)
         // 弾丸の削除

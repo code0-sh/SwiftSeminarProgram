@@ -114,7 +114,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func createShell(location: CGPoint) {
         let shell = SKShapeNode(circleOfRadius: Shell.radius)
         shell.position = CGPoint(x: location.x, y: Shell.positionY)
-        shell.fillColor = UIColor.red()
+        shell.fillColor = UIColor.red
         shell.name = "shell"
         // 弾丸の移動
         let moveAction = SKAction.move(to: CGPoint(x: location.x, y: self.frame.size.height), duration: 5.0)
@@ -243,7 +243,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if contact.bodyA.node?.name == "shell" {
-            guard let shellNode = contact.bodyA.node, enemyNode = contact.bodyB.node else {
+            guard let shellNode = contact.bodyA.node, let enemyNode = contact.bodyB.node else {
                 return
             }
             createParticle(location: enemyNode.position)
@@ -253,7 +253,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         }
         if contact.bodyB.node?.name == "shell" {
-            guard let shellNode = contact.bodyB.node, enemyNode = contact.bodyA.node else {
+            guard let shellNode = contact.bodyB.node, let enemyNode = contact.bodyA.node else {
                 return
             }
             createParticle(location: enemyNode.position)
@@ -279,14 +279,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func setupMotionManager() {
         motionManager = CMMotionManager()
         motionManager.accelerometerUpdateInterval = 0.1
-        let accelerometerHandler: CMAccelerometerHandler = {
-            (data: CMAccelerometerData?, error: NSError?) -> Void in
-            guard let data = data else {
-                return
-            }
-            self.ship.moveX = CGFloat(data.acceleration.x) * 20
-        }
-        motionManager.startAccelerometerUpdates(to: OperationQueue.current()!, withHandler: accelerometerHandler)
+        // 加速度センサーを使用開始
+        motionManager.startAccelerometerUpdates(to: OperationQueue.current!, withHandler: { data, error in
+          guard let data = data else { return }        
+          self.ship.moveX = CGFloat(data.acceleration.x) * 20
+        })
     }
     /// ステータスとスコアの初期化
     func initSetting() {

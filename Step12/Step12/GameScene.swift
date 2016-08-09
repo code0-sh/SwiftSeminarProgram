@@ -16,7 +16,7 @@ class GameScene: SKScene {
     var saveNode: SKSpriteNode! = nil
     var buttonUpNode: SKSpriteNode! = nil
     var clearNode: SKSpriteNode! = nil
-    let defaults: UserDefaults = UserDefaults.standard()
+    let defaults: UserDefaults = UserDefaults.standard
     
     func setup(baseNode: SKNode) {
         // スコアをUserDefaultsから読み取る
@@ -29,7 +29,7 @@ class GameScene: SKScene {
         // ラベルの文字サイズ
         scoreLabelNode.fontSize = 30
         // ラベルの文字色
-        scoreLabelNode.fontColor = SKColor.brown()
+        scoreLabelNode.fontColor = SKColor.brown
         // ラベルの位置
         scoreLabelNode.position = CGPoint(x:self.frame.midX, y:self.frame.midY);
         // ラベルを配置する
@@ -78,7 +78,7 @@ class GameScene: SKScene {
         self.addChild(baseNode)
 
         // 背景色
-        self.backgroundColor = SKColor.purple()
+        self.backgroundColor = SKColor.purple
     }
     /// タップ開始イベント
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

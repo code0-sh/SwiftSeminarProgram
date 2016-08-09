@@ -4,9 +4,9 @@
 
 [実行環境]
 
-OS X El Capitan 10.11.5
+OS X El Capitan 10.11.6
 
-Xcode 8.0 beta(8S128d)
+Xcode 8.0 beta 4(8S188o)
 
 =================================
 

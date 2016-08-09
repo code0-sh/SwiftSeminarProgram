@@ -62,7 +62,7 @@ class ThirdViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.lightGray()
+        self.view.backgroundColor = UIColor.lightGray
         notification.text = ""
     }
     
@@ -85,7 +85,7 @@ class ThirdViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // セルに表示する値を設定する
         let item = contentArray[indexPath.row]
         let content = item.value
-        if let name = content?["name"]!, point = content?["point"]! {
+        if let name = content?["name"]!, let point = content?["point"]! {
             cell.textLabel!.text = "name: \(name) point: \(point)"
         }
         

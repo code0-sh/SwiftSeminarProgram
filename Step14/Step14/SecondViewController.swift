@@ -17,7 +17,7 @@ class SecondViewController: UIViewController {
     /// 保存処理
     @IBAction func save(_ sender: UIButton) {
         if let user = FIRAuth.auth()?.currentUser {
-            guard let point = Int(self.point.text!), uid: String = user.uid else {
+            guard let point = Int(self.point.text!), let uid: String = user.uid else {
                 return
             }
             let rootRef = FIRDatabase.database().reference()
@@ -40,7 +40,7 @@ class SecondViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.lightGray()
+        self.view.backgroundColor = UIColor.lightGray
         notification.text = ""
     }
     

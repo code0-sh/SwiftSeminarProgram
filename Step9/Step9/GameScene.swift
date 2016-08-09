@@ -45,16 +45,13 @@ class GameScene: SKScene {
     func setupMotionManager() {
         motionManager = CMMotionManager()
         motionManager.accelerometerUpdateInterval = 0.1 // 取得間隔
-        let accelerometerHandler: CMAccelerometerHandler = {
-            (data: CMAccelerometerData?, error: NSError?) -> Void in
-            guard let data = data else {
-                return
-            }
-            print("x:\(data.acceleration.x) y:\(data.acceleration.y)")
-            
-            Ship.moveX = CGFloat(data.acceleration.x) * 20
-        }
-        motionManager.startAccelerometerUpdates(to: OperationQueue.current()!, withHandler: accelerometerHandler) // 加速度センサーを使用開始
+        // 加速度センサーを使用開始
+        motionManager.startAccelerometerUpdates(to: OperationQueue.current!, withHandler: { data, error in
+          guard let data = data else { return }
+          print("x:\(data.acceleration.x) y:\(data.acceleration.y)")
+        
+          Ship.moveX = CGFloat(data.acceleration.x) * 20
+        })
     }
     /// Sceneが表示された際に実行される
     override func didMove(to view: SKView) {

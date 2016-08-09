@@ -19,7 +19,7 @@ class EndScene: SKScene {
         // ラベルの文字サイズ
         label.fontSize = 30
         // ラベルの文字色
-        label.fontColor = SKColor.green()
+        label.fontColor = SKColor.green
         // ラベルの位置
         label.position = CGPoint(x:self.frame.midX, y:self.frame.midY);
         
@@ -27,7 +27,7 @@ class EndScene: SKScene {
         self.addChild(label)
         
         // 背景色
-        self.backgroundColor = SKColor.purple()
+        self.backgroundColor = SKColor.purple
     }
     /// タッチ開始イベント
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -37,7 +37,7 @@ class EndScene: SKScene {
             if label.contains(location) {
                 // 通知を送る
                 // SecondViewControllerに遷移する
-                NotificationCenter.default().post(name: "MoveSecondViewController" as NSNotification.Name, object: nil)
+                NotificationCenter.default.post(name: "MoveSecondViewController" as NSNotification.Name, object: nil)
             }
         }
     }

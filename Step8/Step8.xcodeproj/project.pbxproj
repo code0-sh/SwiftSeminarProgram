@@ -17,6 +17,7 @@
 		132FCB121D1A6D2E0087DEA5 /* Step8UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132FCB111D1A6D2E0087DEA5 /* Step8UITests.swift */; };
 		132FCB211D1A72880087DEA5 /* ConflictParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 132FCB1F1D1A72880087DEA5 /* ConflictParticle.sks */; };
 		132FCB221D1A72880087DEA5 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 132FCB201D1A72880087DEA5 /* spark.png */; };
+		6CF3D1D11D595F6800624B89 /* sound_explosion.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6CF3D1D01D595F6800624B89 /* sound_explosion.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		132FCB131D1A6D2E0087DEA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		132FCB1F1D1A72880087DEA5 /* ConflictParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ConflictParticle.sks; sourceTree = "<group>"; };
 		132FCB201D1A72880087DEA5 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		6CF3D1D01D595F6800624B89 /* sound_explosion.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sound_explosion.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 		132FCAEA1D1A6D2E0087DEA5 /* Step8 */ = {
 			isa = PBXGroup;
 			children = (
+				6CF3D1CF1D595F5600624B89 /* Sound */,
 				132FCAEB1D1A6D2E0087DEA5 /* AppDelegate.swift */,
 				132FCAF11D1A6D2E0087DEA5 /* GameScene.swift */,
 				132FCAF31D1A6D2E0087DEA5 /* GameViewController.swift */,
@@ -132,6 +135,14 @@
 				132FCB131D1A6D2E0087DEA5 /* Info.plist */,
 			);
 			path = Step8UITests;
+			sourceTree = "<group>";
+		};
+		6CF3D1CF1D595F5600624B89 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				6CF3D1D01D595F6800624B89 /* sound_explosion.mp3 */,
+			);
+			name = Sound;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,6 +256,7 @@
 			files = (
 				132FCB221D1A72880087DEA5 /* spark.png in Resources */,
 				132FCAF71D1A6D2E0087DEA5 /* Main.storyboard in Resources */,
+				6CF3D1D11D595F6800624B89 /* sound_explosion.mp3 in Resources */,
 				132FCB211D1A72880087DEA5 /* ConflictParticle.sks in Resources */,
 				132FCAF91D1A6D2E0087DEA5 /* Assets.xcassets in Resources */,
 				132FCAFC1D1A6D2E0087DEA5 /* LaunchScreen.storyboard in Resources */,
