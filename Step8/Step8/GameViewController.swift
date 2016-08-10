@@ -12,27 +12,27 @@ import GameplayKit
 
 class GameViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // シーンの作成
-        let scene = GameScene()
-        
-        // View ControllerのViewをSKView型として取り出す
-        let view = self.view as! SKView
-        
-        // FPSの表示
-        view.showsFPS = true
-        
-        // ノード数の表示
-        view.showsNodeCount = true
-        
-        // シーンのサイズをビューに合わせる
-        scene.size = view.frame.size
-        
-        // ビュー上にシーンを表示
-        view.presentScene(scene)
-    }
+  override func viewDidLoad() {
+      super.viewDidLoad()
+      
+      // シーンの作成
+      let scene = GameScene()
+      
+      // View ControllerのViewをSKView型として取り出す
+      let view = self.view as! SKView
+      
+      // FPSの表示
+      view.showsFPS = true
+      
+      // ノード数の表示
+      view.showsNodeCount = true
+      
+      // シーンのサイズをビューに合わせる
+      scene.size = view.frame.size
+      
+      // ビュー上にシーンを表示
+      view.presentScene(scene)
+  }
 
   override var shouldAutorotate: Bool {
         return true
@@ -46,10 +46,10 @@ class GameViewController: UIViewController {
         }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Release any cached data, images, etc that aren't in use.
-    }
+  override func didReceiveMemoryWarning() {
+      super.didReceiveMemoryWarning()
+      // Release any cached data, images, etc that aren't in use.
+  }
 
   override var prefersStatusBarHidden: Bool {
         return true

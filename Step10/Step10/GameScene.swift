@@ -10,8 +10,8 @@ import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene {
-    var gameLabel: SKLabelNode! = nil
-    var scoreLabel: SKLabelNode! = nil
+    var gameLabel: SKLabelNode!
+    var scoreLabel: SKLabelNode!
     var score: Int = 0
     
     /// 得点加算

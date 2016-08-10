@@ -10,7 +10,7 @@ import SpriteKit
 import GameplayKit
 
 class HomeScene: SKScene {
-    var startLabel: SKLabelNode! = nil
+    var startLabel: SKLabelNode!
     /// Sceneが表示された際に実行される
     override func didMove(to view: SKView) {
         let baseNode = SKNode()

@@ -10,27 +10,23 @@ import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene {
-    // 効果音
-    let sound = SKAction.playSoundFileNamed("sound_explosion.mp3", waitForCompletion: false)
+    let lifeTime: Double = 5 // パーティクルのライフタイム
+    let sound = SKAction.playSoundFileNamed("sound_explosion.mp3", waitForCompletion: false) // 効果音
     
     func setupParticle(location: CGPoint) {
         guard let particle = SKEmitterNode(fileNamed: "ConflictParticle.sks") else {
             return
         }
         particle.position = CGPoint(x: location.x, y: location.y)
-        self.addChild(particle)
-        
+      
         // タップするたびにパーティクルが増えて処理が重くなるため
-        // パーティクルを表示してから10秒後に削除する
+        // パーティクルを表示してからlifeTime秒後に削除する
+        let durationAction = SKAction.wait(forDuration: lifeTime)
         let removeAction = SKAction.removeFromParent()
-        let durationAction = SKAction.wait(forDuration: 10)
         let sequenceAction = SKAction.sequence([sound, durationAction, removeAction])
         particle.run(sequenceAction)
-    }
-    /// Sceneが表示された際に実行される
-    override func didMove(to view: SKView) {
-        let baseNode = SKNode()
-        self.addChild(baseNode)
+      
+        self.addChild(particle)
     }
     /// タップ開始イベント
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

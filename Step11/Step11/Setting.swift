@@ -41,7 +41,7 @@ struct Shell {
 struct Enemy {
     static let textureName: String = "enemy"
     static let radius: CGFloat = 20
-    static let appearanceInterval: Int = 2
+    static let appearanceInterval: Double = 2
 }
 /// パーティクル情報
 struct Particle {

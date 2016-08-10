@@ -61,9 +61,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsWorld.gravity = CGVector(dx: 0.0, dy: -0.5) // 重力
         self.physicsWorld.contactDelegate = self // 衝突デリゲート
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
-        self.physicsBody?.restitution = 1.0 // 反発係数
-        self.physicsBody?.linearDamping = 0.0 // 空気抵抗
-        self.physicsBody?.friction = 0.0 // 摩擦
         self.physicsBody?.categoryBitMask = ColliderType.World // 物体種別
         self.physicsBody?.collisionBitMask = ColliderType.Enemy // どの物体と接触した場合に衝突させるか
         

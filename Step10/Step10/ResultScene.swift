@@ -14,11 +14,12 @@ class ResultScene: SKScene {
     override func didMove(to view: SKView) {
         let baseNode = SKNode()
         let resultLabel = Button.setup(location: CGPoint(x: self.frame.midX, y: self.frame.midY), text: "結果")
+        baseNode.addChild(resultLabel)
+
         if let num = self.scene?.userData?["score"] {
             let score = Button.setup(location: CGPoint(x: self.frame.midX, y: self.frame.midY - 50), text: "得点：\(num)")
             baseNode.addChild(score)
         }
-        baseNode.addChild(resultLabel)
         self.addChild(baseNode)
     }
 }

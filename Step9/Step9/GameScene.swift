@@ -11,7 +11,7 @@ import CoreMotion
 import GameplayKit
 
 class GameScene: SKScene {
-    var motionManager: CMMotionManager!
+    var motionManager: CMMotionManager = CMMotionManager()
     var ship: SKSpriteNode!
     /// 衝突判定用のビット値
     struct ColliderType {
@@ -43,12 +43,11 @@ class GameScene: SKScene {
     }
     /// 加速度データを使用して飛行機のx方向の移動距離を算出
     func setupMotionManager() {
-        motionManager = CMMotionManager()
         motionManager.accelerometerUpdateInterval = 0.1 // 取得間隔
         // 加速度センサーを使用開始
-        motionManager.startAccelerometerUpdates(to: OperationQueue.current!, withHandler: { data, error in
-          guard let data = data else { return }
-          print("x:\(data.acceleration.x) y:\(data.acceleration.y)")
+        motionManager.startAccelerometerUpdates(to: OperationQueue.current!, withHandler: { accelerometerData, error in
+          guard let data = accelerometerData else { return }
+          print("x:\(data.acceleration.x)")
         
           Ship.moveX = CGFloat(data.acceleration.x) * 20
         })
@@ -67,6 +66,6 @@ class GameScene: SKScene {
     }
     /// 1フレームごとに呼ばれる
     override func update(_ currentTime: TimeInterval) {
-        ship.position = CGPoint(x: ship.position.x + Ship.moveX, y: self.frame.midY)
+        ship.position = CGPoint(x: Ship.moveX + ship.position.x, y: self.frame.midY)
     }
 }

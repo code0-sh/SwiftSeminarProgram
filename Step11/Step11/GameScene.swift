@@ -10,16 +10,16 @@ import SpriteKit
 import CoreMotion
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
-    var shipNode: SKSpriteNode! = nil
-    var shipStatusNode: SKSpriteNode! = nil
-    var shellStatusNode: SKSpriteNode! = nil
-    var scoreNode: SKLabelNode! = nil
+    var shipNode: SKSpriteNode!
+    var shipStatusNode: SKSpriteNode!
+    var shellStatusNode: SKSpriteNode!
+    var scoreNode: SKLabelNode!
     var timer = Timer();
-    var shipStatus: ShipStatus! = nil
-    var shellStatus: ShellStatus! = nil
-    var score: Score! = nil
-    var ship: Ship! = nil
-    var motionManager: CMMotionManager! = nil
+    var shipStatus: ShipStatus!
+    var shellStatus: ShellStatus!
+    var score: Score!
+    var ship: Ship!
+    var motionManager: CMMotionManager = CMMotionManager()
 
     /// 背景画像の設定
     func setupBackground(baseNode: SKNode) {
@@ -63,7 +63,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         shipNode = SKSpriteNode(texture: texture)
         shipNode.size = CGSize(width: Ship.width, height: Ship.height)
-        shipNode.position = CGPoint(x: self.frame.size.width / 2, y: Ship.positionY)
+        shipNode.position = CGPoint(x: self.frame.midX, y: Ship.positionY)
         shipNode.name = "ship"
         
         // 重力の影響なし
@@ -149,14 +149,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     /// 飛行機のステータスの設定
     func setupShipStatus(baseNode: SKNode) {
         shipStatusNode = SKSpriteNode(color: ShipStatus.color, size: CGSize(width: ShipStatus.width, height: ShipStatus.height))
-        shipStatusNode.position = CGPoint(x: self.frame.width / 2, y: self.frame.height - ShipStatus.height)
+        shipStatusNode.position = CGPoint(x: self.frame.midX, y: self.frame.height - ShipStatus.height)
         shipStatusNode.anchorPoint = CGPoint(x: 0, y: 0)
         baseNode.addChild(shipStatusNode)
     }
     /// 弾丸のステータスの設定
     func setupShellStatus(baseNode: SKNode) {
         shellStatusNode = SKSpriteNode(color: ShellStatus.color, size: CGSize(width: ShellStatus.width, height: ShellStatus.height))
-        shellStatusNode.position = CGPoint(x: self.frame.width / 2, y: self.frame.height - ShipStatus.height - ShellStatus.height)
+        shellStatusNode.position = CGPoint(x: self.frame.midX, y: self.frame.height - ShipStatus.height - ShellStatus.height)
         shellStatusNode.anchorPoint = CGPoint(x: 0, y: 0)
         baseNode.addChild(shellStatusNode)
     }
@@ -209,7 +209,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // ラベルの文字色
         scoreNode.fontColor = Score.fontColor
         // ラベルの位置
-        scoreNode.position = CGPoint(x: self.frame.width / 2, y: self.frame.height - ShipStatus.height - ShellStatus.height - 50);
+        scoreNode.position = CGPoint(x: self.frame.midX, y: self.frame.height - ShipStatus.height - ShellStatus.height - 50);
         
         baseNode.addChild(scoreNode)
     }
@@ -277,7 +277,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     /// 加速度データを使用し飛行機の位置を更新する
     func setupMotionManager() {
-        motionManager = CMMotionManager()
         motionManager.accelerometerUpdateInterval = 0.1
         // 加速度センサーを使用開始
         motionManager.startAccelerometerUpdates(to: OperationQueue.current!, withHandler: { data, error in
@@ -302,7 +301,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         setupShipStatus(baseNode: baseNode)
         setupShellStatus(baseNode: baseNode)
         setupScore(baseNode: baseNode)
-        timer = Timer.scheduledTimer(timeInterval: TimeInterval(Enemy.appearanceInterval),
+        timer = Timer.scheduledTimer(timeInterval: Enemy.appearanceInterval,
                                      target:self,
                                      selector:#selector(GameScene.setupEnemy),
                                      userInfo: nil,
@@ -311,9 +310,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsWorld.gravity = CGVector(dx: 0.0, dy: -0.5)
         self.physicsWorld.contactDelegate = self
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
-        self.physicsBody?.restitution = 1.0 // 反発係数
-        self.physicsBody?.linearDamping = 0.0 // 空気抵抗
-        self.physicsBody?.friction = 0.0 // 摩擦
         self.name = "frame"
         
         // 物体種別

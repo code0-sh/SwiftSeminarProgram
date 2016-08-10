@@ -111,6 +111,7 @@
 		132603CF1D1D08C200E6E755 /* Step11 */ = {
 			isa = PBXGroup;
 			children = (
+				6C2C5EBC1D5AC56800D84C79 /* Components */,
 				132603D01D1D08C200E6E755 /* AppDelegate.swift */,
 				132603D61D1D08C200E6E755 /* GameScene.swift */,
 				132603D81D1D08C200E6E755 /* ViewController.swift */,
@@ -121,7 +122,6 @@
 				138963331D20E2850020408E /* ConflictParticle.sks */,
 				138963341D20E2850020408E /* spark.png */,
 				1333FC5A1D225BF100E714A0 /* ResultScene.swift */,
-				1333FC5C1D225CE300E714A0 /* Label.swift */,
 				1333FC5E1D225EC900E714A0 /* HomeScene.swift */,
 				1333FC601D22693700E714A0 /* Setting.swift */,
 			);
@@ -144,6 +144,14 @@
 				132603F81D1D08C200E6E755 /* Info.plist */,
 			);
 			path = Step11UITests;
+			sourceTree = "<group>";
+		};
+		6C2C5EBC1D5AC56800D84C79 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				1333FC5C1D225CE300E714A0 /* Label.swift */,
+			);
+			name = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

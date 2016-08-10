@@ -17,18 +17,17 @@ struct Ship {
 struct Shell {
     static let radius: CGFloat = 5
     static let positionY: CGFloat = 110
-    static let speed: CGFloat = 10
+    static let travelTime: Double = 5
 }
 
 class GameScene: SKScene {
-    let baseNode: SKNode? = nil
     var ship: SKSpriteNode!
     /// 飛行機の設定
     func setupShip(baseNode: SKNode) {
         let texture = SKTexture(imageNamed: "Spaceship")
         ship = SKSpriteNode(texture: texture)
         ship.size = CGSize(width: Ship.size, height: Ship.size)
-        ship.position = CGPoint(x: self.frame.size.width / 2, y: Ship.positionY)
+        ship.position = CGPoint(x: self.frame.midX, y: Ship.positionY)
         baseNode.addChild(ship)
     }
     /// 弾丸の設定
@@ -36,10 +35,8 @@ class GameScene: SKScene {
         let shell = SKShapeNode(circleOfRadius: Shell.radius)
         shell.position = CGPoint(x: location.x, y: Shell.positionY)
         shell.fillColor = SKColor.red
-        // 弾丸の移動
-        let moveAction = SKAction.move(to: CGPoint(x: location.x, y: self.frame.size.height), duration: 5)
-        // 弾丸の削除
-        let removeAction = SKAction.removeFromParent()
+        let moveAction = SKAction.move(to: CGPoint(x: location.x, y: self.frame.size.height), duration: Shell.travelTime) // 弾丸の移動
+        let removeAction = SKAction.removeFromParent() // 弾丸の削除
         let sequenceAction = SKAction.sequence([moveAction, removeAction])
         shell.run(sequenceAction)
         self.addChild(shell)
