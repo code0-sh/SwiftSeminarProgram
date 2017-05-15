@@ -9,7 +9,7 @@
 import SpriteKit
 
 struct Button {
-    static func setup(location: CGPoint, text: String, color: SKColor = SKColor.white(), size: CGFloat = 20) -> SKLabelNode{
+    static func setup(_ location: CGPoint, text: String, color: SKColor = SKColor.white, size: CGFloat = 20) -> SKLabelNode{
         let label = SKLabelNode()
         label.text = text
         label.fontSize = size

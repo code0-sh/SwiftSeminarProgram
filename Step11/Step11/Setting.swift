@@ -51,7 +51,7 @@ struct Particle {
 struct ShipStatus {
     static let width: CGFloat = 100
     static let height: CGFloat = 30
-    static let color: SKColor = SKColor.blue()
+    static let color: SKColor = SKColor.blue
     var point: Int
     var scaleX: Int
     init() {
@@ -63,7 +63,7 @@ struct ShipStatus {
 struct ShellStatus {
     static let width: CGFloat = 100
     static let height: CGFloat = 30
-    static let color: SKColor = SKColor.yellow()
+    static let color: SKColor = SKColor.yellow
     var point: Int
     var scaleX: Int
     init() {
@@ -74,7 +74,7 @@ struct ShellStatus {
 /// スコア情報
 struct Score {
     static let fontSize: CGFloat = 20
-    static let fontColor: SKColor = SKColor.green()
+    static let fontColor: SKColor = SKColor.green
     static let fontName: String = "Chalkduster"
     var point: Int
     init() {

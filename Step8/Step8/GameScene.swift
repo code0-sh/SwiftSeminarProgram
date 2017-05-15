@@ -13,7 +13,7 @@ class GameScene: SKScene {
     // 効果音
     let sound = SKAction.playSoundFileNamed("sound_explosion.mp3", waitForCompletion: false)
     
-    func setupParticle(location: CGPoint) {
+    func setupParticle(_ location: CGPoint) {
         guard let particle = SKEmitterNode(fileNamed: "ConflictParticle.sks") else {
             return
         }
@@ -36,7 +36,7 @@ class GameScene: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let location = touch.location(in: self)
-            setupParticle(location: location)
+            setupParticle(location)
         }
     }
 }

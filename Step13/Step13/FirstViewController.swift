@@ -12,7 +12,7 @@ import SpriteKit
 class FirstViewController: UIViewController {
     
     /// SecondViewControllerに遷移する
-    func moveSecondViewController(notification: NSNotification) {
+    func moveSecondViewController(_ notification: Notification) {
         var second = UIViewController()
         let selfStoryboard = self.storyboard
         second = selfStoryboard!.instantiateViewController(withIdentifier: "second") as UIViewController
@@ -26,9 +26,9 @@ class FirstViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // 通知の監視
-        NotificationCenter.default().addObserver(self,
+        NotificationCenter.default.addObserver(self,
                                                  selector: #selector(moveSecondViewController),
-                                                 name: "MoveSecondViewController",
+                                                 name: NSNotification.Name(rawValue: "MoveSecondViewController"),
                                                  object: nil)
         
         // View ControllerのViewをSKView型として取り出す
@@ -53,15 +53,15 @@ class FirstViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         // 通知の監視の終了
-        NotificationCenter.default().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
 
-    override func shouldAutorotate() -> Bool {
+    override var shouldAutorotate: Bool {
         return true
     }
 
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        if UIDevice.current().userInterfaceIdiom == .phone {
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        if UIDevice.current.userInterfaceIdiom == .phone {
             return .allButUpsideDown
         } else {
             return .all
@@ -73,7 +73,7 @@ class FirstViewController: UIViewController {
         // Release any cached data, images, etc that aren't in use.
     }
 
-    override func prefersStatusBarHidden() -> Bool {
+    override var prefersStatusBarHidden: Bool {
         return true
     }
 }

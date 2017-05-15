@@ -27,15 +27,15 @@ class GameScene: SKScene {
         }
     }
     /// 遷移先のSceneのUserDataにスコアを保存
-    func setUserData(scene: SKScene) {
+    private func setUserData(_ scene: SKScene) {
         scene.userData = NSMutableDictionary()
-        scene.userData?.setObject(score, forKey: "score")
+        scene.userData?.setObject(score, forKey: "score" as NSCopying)
     }
     /// Sceneが表示された際に実行される
     override func didMove(to view: SKView) {
         let baseNode = SKNode()
-        gameLabel = Button.setup(location: CGPoint(x: self.frame.midX, y: self.frame.midY), text: "\\(^^)/")
-        scoreLabel = Button.setup(location: CGPoint(x: self.frame.midX, y: self.frame.midY - 50), text: "タップすると得点加算")
+        gameLabel = Button.setup(CGPoint(x: self.frame.midX, y: self.frame.midY), text: "\\(^^)/")
+        scoreLabel = Button.setup(CGPoint(x: self.frame.midX, y: self.frame.midY - 50), text: "タップすると得点加算")
         baseNode.addChild(gameLabel)
         baseNode.addChild(scoreLabel)
         self.addChild(baseNode)
@@ -49,7 +49,7 @@ class GameScene: SKScene {
                 let transition = SKTransition.reveal(with: SKTransitionDirection.down, duration: 1.0)
                 let newScene = ResultScene()
                 newScene.size = self.frame.size
-                setUserData(scene: newScene)
+                setUserData(newScene)
                 view?.presentScene(newScene, transition: transition)
             }
             // Scoreラベルタッチ

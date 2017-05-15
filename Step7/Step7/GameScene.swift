@@ -24,7 +24,7 @@ class GameScene: SKScene {
     let baseNode: SKNode? = nil
     var ship: SKSpriteNode!
     /// 飛行機の設定
-    func setupShip(baseNode: SKNode) {
+    func setupShip(_ baseNode: SKNode) {
         let texture = SKTexture(imageNamed: "Spaceship")
         ship = SKSpriteNode(texture: texture)
         ship.size = CGSize(width: Ship.size, height: Ship.size)
@@ -32,10 +32,10 @@ class GameScene: SKScene {
         baseNode.addChild(ship)
     }
     /// 弾丸の設定
-    func createShell(location: CGPoint) {
+    func createShell(_ location: CGPoint) {
         let shell = SKShapeNode(circleOfRadius: Shell.radius)
         shell.position = CGPoint(x: location.x, y: Shell.positionY)
-        shell.fillColor = SKColor.red()
+        shell.fillColor = SKColor.red
         // 弾丸の移動
         let moveAction = SKAction.move(to: CGPoint(x: location.x, y: self.frame.size.height), duration: 5)
         // 弾丸の削除
@@ -47,7 +47,7 @@ class GameScene: SKScene {
     /// Sceneが表示された際に実行される
     override func didMove(to view: SKView) {
         let baseNode = SKNode()
-        setupShip(baseNode: baseNode)
+        setupShip(baseNode)
         self.addChild(baseNode)
     }
     /// タップ開始イベント
@@ -64,7 +64,7 @@ class GameScene: SKScene {
             let location = touch.location(in: self)
             let tapCount = touch.tapCount
             if tapCount > 1 {
-                createShell(location: location)
+                createShell(location)
             }
         }
     }

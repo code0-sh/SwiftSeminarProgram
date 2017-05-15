@@ -14,7 +14,7 @@ class HomeScene: SKScene {
     /// Sceneが表示された際に実行される
     override func didMove(to view: SKView) {
         let baseNode = SKNode()
-        startLabel = Button.setup(location: CGPoint(x: self.frame.midX, y: self.frame.midY), text: "Start")
+        startLabel = Button.setup(CGPoint(x: self.frame.midX, y: self.frame.midY), text: "Start")
         baseNode.addChild(startLabel)
         self.addChild(baseNode)
     }

@@ -19,7 +19,7 @@ class StartScene: SKScene {
         // ラベルの文字サイズ
         label.fontSize = 30
         // ラベルの文字色
-        label.fontColor = SKColor.green()
+        label.fontColor = SKColor.green
         // ラベルの位置
         label.position = CGPoint(x:self.frame.midX, y:self.frame.midY);
         
@@ -27,7 +27,7 @@ class StartScene: SKScene {
         self.addChild(label)
         
         // 背景色
-        self.backgroundColor = SKColor.purple()
+        self.backgroundColor = SKColor.purple
     }
     /// タッチ開始イベント
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

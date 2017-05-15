@@ -14,15 +14,15 @@ class ResultScene: SKScene {
     override func didMove(to view: SKView) {
         let baseNode = SKNode()
         // ゲームオーバーラベル
-        let resultLabel = Label.setup(location: CGPoint(x: self.frame.midX, y: self.frame.midY), text: "Game Over")
+        let resultLabel = Label.setup(CGPoint(x: self.frame.midX, y: self.frame.midY), text: "Game Over")
         baseNode.addChild(resultLabel)
         // スコアラベル
         if let num = self.scene?.userData?["score"] {
-            let scoreLabel = Label.setup(location: CGPoint(x: self.frame.midX, y: self.frame.midY - 50), text: "得点：\(num)")
+            let scoreLabel = Label.setup(CGPoint(x: self.frame.midX, y: self.frame.midY - 50), text: "得点：\(num)")
             baseNode.addChild(scoreLabel)
         }
         // 再スタートラベル
-        restartLabel = Label.setup(location: CGPoint(x: self.frame.midX, y: self.frame.midY - 100), text: "Restart")
+        restartLabel = Label.setup(CGPoint(x: self.frame.midX, y: self.frame.midY - 100), text: "Restart")
         baseNode.addChild(restartLabel)
         
         self.addChild(baseNode)

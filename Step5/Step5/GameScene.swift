@@ -11,7 +11,7 @@ import GameplayKit
 
 class GameScene: SKScene {
     /// 背景画像を設定する
-    func setupBackground(baseNode: SKNode) {
+    func setupBackground(_ baseNode: SKNode) {
         // 背景画像からテクスチャを作成
         let texture = SKTexture(imageNamed: "background")
         // フィルタリングモード（テクスチャの本来のサイズ以外で描画される場合に使用される）
@@ -52,7 +52,7 @@ class GameScene: SKScene {
     /// Sceneが表示された際に実行される
     override func didMove(to view: SKView) {
         let baseNode = SKNode()
-        self.setupBackground(baseNode: baseNode)
+        self.setupBackground(baseNode)
         self.addChild(baseNode)
     }
 }

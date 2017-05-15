@@ -16,7 +16,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         static let World: UInt32 = (1 << 1)
     }
     
-    func setupEnemy(baseNode: SKNode) {
+    func setupEnemy(_ baseNode: SKNode) {
         // エネミー画像からテクスチャを作成
         let texture = SKTexture(imageNamed: "enemy")
         // フィルタリングモード（テクスチャの本来のサイズ以外で描画される場合に使用される）
@@ -55,7 +55,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     /// Sceneが表示された際に実行される
     override func didMove(to view: SKView) {
         let baseNode = SKNode()
-        self.setupEnemy(baseNode: baseNode)
+        self.setupEnemy(baseNode)
 
         // 物理設定
         self.physicsWorld.gravity = CGVector(dx: 0.0, dy: -0.5) // 重力

@@ -8,6 +8,41 @@
 
 import SpriteKit
 import CoreMotion
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func <= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l <= r
+  default:
+    return !(rhs < lhs)
+  }
+}
+
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     var shipNode: SKSpriteNode! = nil
@@ -22,7 +57,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var motionManager: CMMotionManager! = nil
 
     /// 背景画像の設定
-    func setupBackground(baseNode: SKNode) {
+    private func setupBackground(_ baseNode: SKNode) {
         // 背景画像からテクスチャを作成
         let texture = SKTexture(imageNamed: Background.textureName)
         // フィルタリングモード（テクスチャの本来のサイズ以外で描画される場合に使用される）
@@ -53,7 +88,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     /// 飛行機の設定
-    func setupShip(baseNode: SKNode) {
+    private func setupShip(_ baseNode: SKNode) {
         // 飛行機画像からテクスチャを作成
         let texture = SKTexture(imageNamed: Ship.textureName)
         // フィルタリングモード（テクスチャの本来のサイズ以外で描画される場合に使用される）
@@ -78,7 +113,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         baseNode.addChild(shipNode)
     }
     /// エネミーの設定
-    func setupEnemy() {
+    @objc private func setupEnemy() {
         // エネミー画像からテクスチャを作成
         let texture = SKTexture(imageNamed: Enemy.textureName)
         // フィルタリングモード（テクスチャの本来のサイズ以外で描画される場合に使用される）
@@ -111,10 +146,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     }
     /// 弾丸の設定
-    func createShell(location: CGPoint) {
+    private func createShell(_ location: CGPoint) {
         let shell = SKShapeNode(circleOfRadius: Shell.radius)
         shell.position = CGPoint(x: location.x, y: Shell.positionY)
-        shell.fillColor = UIColor.red()
+        shell.fillColor = UIColor.red
         shell.name = "shell"
         // 弾丸の移動
         let moveAction = SKAction.move(to: CGPoint(x: location.x, y: self.frame.size.height), duration: 5.0)
@@ -134,7 +169,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(shell)
     }
     /// パーティクルの設定
-    func createParticle(location: CGPoint) {
+    private func createParticle(_ location: CGPoint) {
         let particle = SKEmitterNode(fileNamed: Particle.fileName)
         particle?.position = CGPoint(x: location.x, y: location.y)
         self.addChild(particle!)
@@ -147,21 +182,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         particle?.run(sequenceAction)
     }
     /// 飛行機のステータスの設定
-    func setupShipStatus(baseNode: SKNode) {
+    private func setupShipStatus(_ baseNode: SKNode) {
         shipStatusNode = SKSpriteNode(color: ShipStatus.color, size: CGSize(width: ShipStatus.width, height: ShipStatus.height))
         shipStatusNode.position = CGPoint(x: self.frame.width / 2, y: self.frame.height - ShipStatus.height)
         shipStatusNode.anchorPoint = CGPoint(x: 0, y: 0)
         baseNode.addChild(shipStatusNode)
     }
     /// 弾丸のステータスの設定
-    func setupShellStatus(baseNode: SKNode) {
+    private func setupShellStatus(_ baseNode: SKNode) {
         shellStatusNode = SKSpriteNode(color: ShellStatus.color, size: CGSize(width: ShellStatus.width, height: ShellStatus.height))
         shellStatusNode.position = CGPoint(x: self.frame.width / 2, y: self.frame.height - ShipStatus.height - ShellStatus.height)
         shellStatusNode.anchorPoint = CGPoint(x: 0, y: 0)
         baseNode.addChild(shellStatusNode)
     }
     /// 飛行機のステータス更新
-    func updateShipStatus() {
+    private func updateShipStatus() {
         if shipStatus?.scaleX > 0 {
             shipStatus?.scaleX -= 1
             let scaleAction = SKAction.scaleX(to: CGFloat(shipStatus.scaleX)/10.0, duration: 1.0)
@@ -174,13 +209,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let transition = SKTransition.reveal(with: SKTransitionDirection.down, duration: 1.0)
             let newScene = ResultScene()
             newScene.size = self.frame.size
-            setUserData(scene: newScene)
+            setUserData(newScene)
             view?.presentScene(newScene, transition: transition)
         }
         shipStatus?.point -= 1
     }
     /// 弾丸のステータス更新
-    func updateShellStatus() {
+    private func updateShellStatus() {
         if shellStatus?.scaleX > 0 {
             shellStatus?.scaleX -= 1
             let scaleAction = SKAction.scaleX(to: CGFloat(shellStatus.scaleX)/100.0, duration: 1.0)
@@ -193,13 +228,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let transition = SKTransition.reveal(with: SKTransitionDirection.down, duration: 1.0)
             let newScene = ResultScene()
             newScene.size = self.frame.size
-            setUserData(scene: newScene)
+            setUserData(newScene)
             view?.presentScene(newScene, transition: transition)
         }
         shellStatus?.point -= 1
     }
     /// スコアの設定
-    func setupScore(baseNode: SKNode) {
+    private func setupScore(_ baseNode: SKNode) {
         // ラベルのフォントを指定しインスタンスを生成する
         scoreNode = SKLabelNode(fontNamed: Score.fontName)
         // ラベルに表示する文字列
@@ -214,22 +249,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         baseNode.addChild(scoreNode)
     }
     /// スコア更新
-    func updateScorePoint() {
+    private func updateScorePoint() {
         score?.point += 1
         scoreNode.text = "スコア:\(score.point)ポイント"
     }
     /// 遷移先のSceneのuserDataにスコアを保存
-    func setUserData(scene: SKScene) {
+    private func setUserData(_ scene: SKScene) {
         scene.userData = NSMutableDictionary()
-        scene.userData?.setObject(score.point, forKey: "score")
+        scene.userData?.setObject(score.point, forKey: "score" as NSCopying)
     }
     /// 接触時のイベント
-    func didBegin(_ contact: SKPhysicsContact) {
+    internal func didBegin(_ contact: SKPhysicsContact) {
         if contact.bodyA.node?.name == "ship" {
             guard let enemyNode = contact.bodyB.node else {
                 return
             }
-            createParticle(location: enemyNode.position)
+            createParticle(enemyNode.position)
             enemyNode.removeFromParent()
             updateShipStatus()
         }
@@ -237,26 +272,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             guard let enemyNode = contact.bodyA.node else {
                 return
             }
-            createParticle(location: enemyNode.position)
+            createParticle(enemyNode.position)
             enemyNode.removeFromParent()
             updateShipStatus()
         }
         
         if contact.bodyA.node?.name == "shell" {
-            guard let shellNode = contact.bodyA.node, enemyNode = contact.bodyB.node else {
+            guard let shellNode = contact.bodyA.node, let enemyNode = contact.bodyB.node else {
                 return
             }
-            createParticle(location: enemyNode.position)
+            createParticle(enemyNode.position)
             shellNode.removeFromParent()
             enemyNode.removeFromParent()
             updateScorePoint()
 
         }
         if contact.bodyB.node?.name == "shell" {
-            guard let shellNode = contact.bodyB.node, enemyNode = contact.bodyA.node else {
+            guard let shellNode = contact.bodyB.node, let enemyNode = contact.bodyA.node else {
                 return
             }
-            createParticle(location: enemyNode.position)
+            createParticle(enemyNode.position)
             shellNode.removeFromParent()
             enemyNode.removeFromParent()
             updateScorePoint()
@@ -276,20 +311,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     /// 加速度データを使用し飛行機の位置を更新する
-    func setupMotionManager() {
+    private func setupMotionManager() {
         motionManager = CMMotionManager()
         motionManager.accelerometerUpdateInterval = 0.1
-        let accelerometerHandler: CMAccelerometerHandler = {
-            (data: CMAccelerometerData?, error: NSError?) -> Void in
+        motionManager.startAccelerometerUpdates(to: OperationQueue.current!, withHandler: {(data, error) in
             guard let data = data else {
                 return
             }
             self.ship.moveX = CGFloat(data.acceleration.x) * 20
-        }
-        motionManager.startAccelerometerUpdates(to: OperationQueue.current()!, withHandler: accelerometerHandler)
+        })
     }
     /// ステータスとスコアの初期化
-    func initSetting() {
+    private func initSetting() {
         shipStatus = ShipStatus()
         shellStatus = ShellStatus()
         score = Score()
@@ -300,11 +333,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         initSetting()
         setupMotionManager()
         let baseNode = SKNode()
-        setupBackground(baseNode: baseNode)
-        setupShip(baseNode: baseNode)
-        setupShipStatus(baseNode: baseNode)
-        setupShellStatus(baseNode: baseNode)
-        setupScore(baseNode: baseNode)
+        setupBackground(baseNode)
+        setupShip(baseNode)
+        setupShipStatus(baseNode)
+        setupShellStatus(baseNode)
+        setupScore(baseNode)
         timer = Timer.scheduledTimer(timeInterval: TimeInterval(Enemy.appearanceInterval),
                                      target:self,
                                      selector:#selector(GameScene.setupEnemy),
@@ -330,7 +363,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for _ in touches {
             if shellStatus.point > 0 {
-                createShell(location: shipNode.position)
+                createShell(shipNode.position)
                 updateShellStatus()
             }
         }

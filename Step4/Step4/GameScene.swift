@@ -21,7 +21,7 @@ class GameScene: SKScene {
         // スプライトを配置する
         self.addChild(sprite)
         // 画面の背景色
-        self.backgroundColor = UIColor.lightGray()
+        self.backgroundColor = UIColor.lightGray
         
         // 画像の差し替え
         let texture = SKTexture(imageNamed: "airplane.png")

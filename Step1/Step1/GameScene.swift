@@ -14,9 +14,9 @@ class GameScene: SKScene {
     var entities = [GKEntity]()
     var graphs = [GKGraph]()
     
-    private var lastUpdateTime : TimeInterval = 0
-    private var label : SKLabelNode?
-    private var spinnyNode : SKShapeNode?
+    fileprivate var lastUpdateTime : TimeInterval = 0
+    fileprivate var label : SKLabelNode?
+    fileprivate var spinnyNode : SKShapeNode?
     
     override func sceneDidLoad() {
 
@@ -36,7 +36,7 @@ class GameScene: SKScene {
         if let spinnyNode = self.spinnyNode {
             spinnyNode.lineWidth = 2.5
             
-            spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(M_PI), duration: 1)))
+            spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
             spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
                                               SKAction.fadeOut(withDuration: 0.5),
                                               SKAction.removeFromParent()]))
@@ -47,7 +47,7 @@ class GameScene: SKScene {
     func touchDown(atPoint pos : CGPoint) {
         if let n = self.spinnyNode?.copy() as! SKShapeNode? {
             n.position = pos
-            n.strokeColor = SKColor.green()
+            n.strokeColor = SKColor.green
             self.addChild(n)
         }
     }
@@ -55,7 +55,7 @@ class GameScene: SKScene {
     func touchMoved(toPoint pos : CGPoint) {
         if let n = self.spinnyNode?.copy() as! SKShapeNode? {
             n.position = pos
-            n.strokeColor = SKColor.blue()
+            n.strokeColor = SKColor.blue
             self.addChild(n)
         }
     }
@@ -63,7 +63,7 @@ class GameScene: SKScene {
     func touchUp(atPoint pos : CGPoint) {
         if let n = self.spinnyNode?.copy() as! SKShapeNode? {
             n.position = pos
-            n.strokeColor = SKColor.red()
+            n.strokeColor = SKColor.red
             self.addChild(n)
         }
     }
@@ -102,7 +102,7 @@ class GameScene: SKScene {
         
         // Update entities
         for entity in self.entities {
-            entity.update(withDeltaTime: dt)
+            entity.update(deltaTime: dt)
         }
         
         self.lastUpdateTime = currentTime

@@ -25,7 +25,7 @@ class GameScene: SKScene {
         static var moveX: CGFloat = 0
     }
     /// 飛行機のノードを追加
-    func setupShip(baseNode: SKNode) {
+    func setupShip(_ baseNode: SKNode) {
         let texture = SKTexture(imageNamed: "Spaceship")
         // フィルタリングモード（テクスチャの本来のサイズ以外で描画される場合に使用される）
         // .linear クォリティー高い
@@ -45,21 +45,19 @@ class GameScene: SKScene {
     func setupMotionManager() {
         motionManager = CMMotionManager()
         motionManager.accelerometerUpdateInterval = 0.1 // 取得間隔
-        let accelerometerHandler: CMAccelerometerHandler = {
-            (data: CMAccelerometerData?, error: NSError?) -> Void in
+        motionManager.startAccelerometerUpdates(to: OperationQueue.current!, withHandler: {(data, error) in
             guard let data = data else {
                 return
             }
             print("x:\(data.acceleration.x) y:\(data.acceleration.y)")
-            
+
             Ship.moveX = CGFloat(data.acceleration.x) * 20
-        }
-        motionManager.startAccelerometerUpdates(to: OperationQueue.current()!, withHandler: accelerometerHandler) // 加速度センサーを使用開始
+        })
     }
     /// Sceneが表示された際に実行される
     override func didMove(to view: SKView) {
         let baseNode = SKNode()
-        setupShip(baseNode: baseNode)
+        setupShip(baseNode)
         setupMotionManager()
 
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height))
